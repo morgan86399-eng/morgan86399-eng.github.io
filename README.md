@@ -1,2 +1,3 @@
 # morgan86399-eng.github.io
-User GitHub Pages site
+
+Public GitHub Pages host. The game lives at [/balu-preview/](/balu-preview/).
