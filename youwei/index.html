@@ -3,37 +3,84 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>祐維筆記與心得</title>
+  <title>祐維筆記與心得 — 智慧講座精選</title>
+  <meta name="description" content="先天智慧真道智慧講座筆記與祐維心得精華整理">
   <style>
     :root {
       --bg: #f8fafc;
+      --bg-subtle: #f1f5f9;
       --card-bg: #ffffff;
-      --text: #1e293b;
+      --text: #0f172a;
+      --text-secondary: #334155;
       --text-muted: #64748b;
       --border: #e2e8f0;
+      --border-subtle: #f1f5f9;
       --accent: #2563eb;
       --accent-hover: #1d4ed8;
-      --star-color: #f59e0b;
-      --header-bg: rgba(255, 255, 255, 0.94);
-      --font-stack: -apple-system, BlinkMacSystemFont, "PingFang SC", "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
-      --insight-bg: #f0f7ff;
-      --insight-border: #3b82f6;
-      --insight-text: #1e3a8a;
+      --accent-light: #eff6ff;
+      --accent-border: #bfdbfe;
+      
+      /* 祐維心得專屬橘色系統 */
+      --insight-border: #f97316;
+      --insight-border-hover: #ea580c;
+      --insight-bg: linear-gradient(135deg, #fffbf5 0%, #fff7ed 100%);
+      --insight-badge-bg: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+      --insight-badge-text: #ffffff;
+      --insight-text: #7c2d12;
+      --insight-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15), 0 10px 25px -4px rgba(249, 115, 22, 0.18);
+      --insight-shadow-hover: 0 0 0 4px rgba(249, 115, 22, 0.28), 0 14px 32px -4px rgba(249, 115, 22, 0.24);
+      --insight-btn-border: #fdba74;
+      --insight-btn-hover: #fed7aa;
+
+      /* 強調標籤與重點 */
+      --star-color: #d97706;
+      --star-badge-bg: #fef3c7;
+      --step-badge-bg: #e0f2fe;
+      --step-badge-text: #0369a1;
+      --callout-bg: #f8fafc;
+      --callout-border: #cbd5e1;
+
+      --header-bg: rgba(255, 255, 255, 0.92);
+      --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.04), 0 4px 12px -2px rgba(0, 0, 0, 0.02);
+      --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+      --base-font-size: 16.5px;
     }
 
     [data-theme="dark"] {
-      --bg: #0f172a;
+      --bg: #0b1120;
+      --bg-subtle: #0f172a;
       --card-bg: #1e293b;
-      --text: #f1f5f9;
+      --text: #f8fafc;
+      --text-secondary: #cbd5e1;
       --text-muted: #94a3b8;
       --border: #334155;
-      --accent: #3b82f6;
-      --accent-hover: #60a5fa;
+      --border-subtle: #1e293b;
+      --accent: #38bdf8;
+      --accent-hover: #7dd3fc;
+      --accent-light: rgba(56, 189, 248, 0.12);
+      --accent-border: #0369a1;
+      
+      /* 祐維心得專屬橘色系統 (深色高發光暖橘) */
+      --insight-border: #fb923c;
+      --insight-border-hover: #fdba74;
+      --insight-bg: linear-gradient(135deg, rgba(249, 115, 22, 0.12) 0%, rgba(249, 115, 22, 0.18) 100%);
+      --insight-badge-bg: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
+      --insight-badge-text: #ffffff;
+      --insight-text: #ffedd5;
+      --insight-shadow: 0 0 0 3px rgba(251, 146, 60, 0.2), 0 10px 28px -4px rgba(249, 115, 22, 0.28);
+      --insight-shadow-hover: 0 0 0 4px rgba(251, 146, 60, 0.35), 0 14px 34px -4px rgba(249, 115, 22, 0.36);
+      --insight-btn-border: rgba(251, 146, 60, 0.4);
+      --insight-btn-hover: rgba(251, 146, 60, 0.25);
+
       --star-color: #fbbf24;
-      --header-bg: rgba(30, 41, 59, 0.94);
-      --insight-bg: rgba(30, 58, 138, 0.28);
-      --insight-border: #60a5fa;
-      --insight-text: #e0e7ff;
+      --star-badge-bg: rgba(251, 191, 36, 0.16);
+      --step-badge-bg: rgba(56, 189, 248, 0.15);
+      --step-badge-text: #7dd3fc;
+      --callout-bg: #152238;
+      --callout-border: #334155;
+
+      --header-bg: rgba(15, 23, 42, 0.92);
+      --card-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.35);
     }
 
     * {
@@ -42,68 +89,141 @@
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       background-color: var(--bg);
       color: var(--text);
       font-family: var(--font-stack);
-      line-height: 1.85;
-      font-size: 16.5px;
+      line-height: 1.95;
+      font-size: var(--base-font-size);
       -webkit-font-smoothing: antialiased;
       transition: background-color 0.25s, color 0.25s;
+      min-height: 100vh;
     }
 
+    /* 頂部閱讀進度指示條 */
+    #readingProgress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3.5px;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent) 0%, #f97316 100%);
+      z-index: 1001;
+      transition: width 0.1s ease;
+    }
+
+    /* 頂部導航欄 (Sticky Header) */
     header {
       position: sticky;
       top: 0;
       z-index: 100;
       background: var(--header-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
       padding: 12px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
     }
 
-    .header-title {
-      font-size: 18px;
-      font-weight: 700;
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .brand-logo {
       display: flex;
       align-items: center;
       gap: 8px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .brand-icon {
+      font-size: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: var(--accent-light);
+      border: 1px solid var(--accent-border);
+    }
+
+    .brand-title {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
       white-space: nowrap;
     }
 
+    .brand-badge {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      background: var(--accent-light);
+      color: var(--accent);
+      border-radius: 999px;
+      border: 1px solid var(--accent-border);
+      margin-left: 4px;
+    }
+
+    /* 頁面分頁連結 (Nav Links) */
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       overflow-x: auto;
+      padding: 4px 2px;
+      scrollbar-width: none;
+    }
+    .nav-links::-webkit-scrollbar {
+      display: none;
     }
 
     .nav-btn {
       padding: 6px 14px;
-      border-radius: 6px;
+      border-radius: 8px;
       text-decoration: none;
-      color: var(--text);
-      background: var(--border);
-      font-size: 14px;
+      color: var(--text-secondary);
+      background: transparent;
+      font-size: 13.5px;
       font-weight: 600;
-      transition: all 0.2s;
+      border: 1px solid transparent;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       white-space: nowrap;
     }
 
     .nav-btn:hover {
-      background: var(--accent);
-      color: #fff;
+      background: var(--bg-subtle);
+      color: var(--text);
+      border-color: var(--border);
     }
 
+    .nav-btn.active {
+      background: var(--accent-light);
+      color: var(--accent);
+      border-color: var(--accent-border);
+      font-weight: 700;
+    }
+
+    /* 頂部操作按鈕組 */
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
+      flex-shrink: 0;
     }
 
     .btn {
@@ -111,64 +231,209 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 8px 16px;
+      padding: 7px 15px;
       border-radius: 8px;
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 600;
       border: 1px solid transparent;
-      transition: all 0.2s;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      user-select: none;
     }
 
     .btn-primary {
       background-color: var(--accent);
       color: #fff;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.2);
     }
 
     .btn-primary:hover {
       background-color: var(--accent-hover);
-      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.32);
+      transform: translateY(-1px);
     }
 
     .btn-outline {
-      background: transparent;
+      background: var(--card-bg);
       border-color: var(--border);
-      color: var(--text);
+      color: var(--text-secondary);
     }
 
     .btn-outline:hover {
-      background: var(--border);
+      background: var(--bg-subtle);
+      color: var(--text);
+      border-color: var(--text-muted);
     }
 
+    /* 搜尋欄與控制面板 */
+    .controls-wrapper {
+      max-width: 920px;
+      margin: 24px auto 0 auto;
+      padding: 0 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .search-box {
+      position: relative;
+      flex: 1;
+      min-width: 240px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 9px 14px 9px 38px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--card-bg);
+      color: var(--text);
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-light);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 15px;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .font-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 3px 6px;
+      border-radius: 9px;
+    }
+
+    .font-btn {
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      padding: 4px 8px;
+      font-size: 13px;
+      font-weight: 700;
+      border-radius: 6px;
+      transition: all 0.15s;
+    }
+
+    .font-btn:hover {
+      background: var(--bg-subtle);
+      color: var(--accent);
+    }
+
+    /* 主要內容容器 */
     main {
-      max-width: 900px;
-      margin: 32px auto 80px auto;
+      max-width: 920px;
+      margin: 20px auto 90px auto;
       padding: 0 20px;
     }
 
+    /* 頁面大卡片 */
     .page-section {
       background-color: var(--card-bg);
       border: 1px solid var(--border);
-      border-radius: 14px;
-      padding: 36px 40px;
-      margin-bottom: 36px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
-      scroll-margin-top: 80px;
+      border-radius: 18px;
+      padding: 38px 44px;
+      margin-bottom: 38px;
+      box-shadow: var(--card-shadow);
+      scroll-margin-top: 86px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    /* 卡片頂部精緻彩色裝飾邊條 */
+    .page-section::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--accent) 0%, #f97316 100%);
+    }
+
+    #page1::before { background: linear-gradient(90deg, #3b82f6 0%, #2563eb 100%); }
+    #page2::before { background: linear-gradient(90deg, #0ea5e9 0%, #059669 100%); }
+    #page3::before { background: linear-gradient(90deg, #8b5cf6 0%, #6366f1 100%); }
+    #page4::before { background: linear-gradient(90deg, #f59e0b 0%, #ea580c 100%); }
+
+    /* 卡片標題欄 */
+    .page-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding-bottom: 16px;
+      margin-bottom: 26px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .page-title-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .page-pill {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 6px;
+      background: var(--accent-light);
+      color: var(--accent);
+      border: 1px solid var(--accent-border);
     }
 
     .page-title {
       font-size: 22px;
       font-weight: 800;
-      padding-bottom: 14px;
-      margin-bottom: 22px;
-      border-bottom: 2px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      color: var(--accent);
+      letter-spacing: -0.01em;
+      color: var(--text);
     }
 
+    .page-action-btn {
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .page-action-btn:hover {
+      background: var(--accent-light);
+      color: var(--accent);
+      border-color: var(--accent-border);
+    }
+
+    /* 筆記行樣式 */
     .note-content {
-      font-size: 16.5px;
+      font-size: 1em;
       line-height: 2.05;
       letter-spacing: 0.02em;
     }
@@ -176,67 +441,150 @@
     .note-line {
       white-space: pre-wrap;
       word-break: break-word;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      padding: 4px 8px;
+      border-radius: 8px;
+      transition: background-color 0.15s ease;
+      position: relative;
     }
 
-    /* 祐維心得方框特別強調與隔離樣式 */
+    .note-line:hover {
+      background-color: var(--bg-subtle);
+    }
+
+    /* 關鍵字與標記高亮 */
+    .note-line strong {
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .badge-star {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--star-color);
+      font-weight: 800;
+      margin-right: 4px;
+    }
+
+    .badge-step {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--step-badge-bg);
+      color: var(--step-badge-text);
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 1px 7px;
+      border-radius: 6px;
+      margin-right: 6px;
+    }
+
+    /* ==========================================================================
+       ★ 核心重點：祐維心得 方框橘色格線匡起來 (Orange Bordered Insight Box) ★
+       ========================================================================== */
     .insight-box {
-      margin: 16px 0 20px 0;
-      padding: 16px 20px 18px 22px;
+      margin: 24px 0 28px 0;
+      padding: 20px 24px 22px 24px;
       background: var(--insight-bg);
-      border: 2px solid var(--insight-border);
-      border-left: 6px solid var(--accent);
-      border-radius: 10px;
-      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.08);
-      transition: all 0.25s ease;
+      /* 明顯且完整的橘色匡格線，四面整齊圍繞 */
+      border: 2.5px solid var(--insight-border);
+      border-radius: 14px;
+      box-shadow: var(--insight-shadow);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
+    }
+
+    .insight-box:hover {
+      border-color: var(--insight-border-hover);
+      box-shadow: var(--insight-shadow-hover);
+      transform: translateY(-2px);
     }
 
     .insight-header {
       display: flex;
       align-items: center;
-      margin-bottom: 8px;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1.5px dashed rgba(249, 115, 22, 0.35);
     }
 
     .insight-badge {
       display: inline-flex;
       align-items: center;
-      gap: 5px;
-      background: var(--accent);
-      color: #ffffff;
-      font-weight: 700;
+      gap: 6px;
+      background: var(--insight-badge-bg);
+      color: var(--insight-badge-text);
+      font-weight: 800;
       font-size: 13.5px;
-      padding: 3px 12px;
-      border-radius: 6px;
+      padding: 4px 14px;
+      border-radius: 20px;
       letter-spacing: 0.04em;
+      box-shadow: 0 2px 8px rgba(234, 88, 12, 0.35);
+    }
+
+    .insight-copy-btn {
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid var(--insight-btn-border);
+      color: var(--insight-text);
+      padding: 3px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      transition: all 0.15s ease;
+    }
+
+    [data-theme="dark"] .insight-copy-btn {
+      background: rgba(30, 41, 59, 0.7);
+    }
+
+    .insight-copy-btn:hover {
+      background: var(--insight-btn-hover);
+      transform: scale(1.03);
     }
 
     .insight-text {
       color: var(--insight-text);
-      font-size: 16.5px;
-      line-height: 1.95;
-      letter-spacing: 0.02em;
-      font-weight: 500;
+      font-size: 1em;
+      line-height: 2.05;
+      letter-spacing: 0.025em;
+      font-weight: 550;
       white-space: pre-wrap;
       word-break: break-word;
     }
 
+    /* 提示訊息 (Toast) */
     .toast {
       position: fixed;
-      bottom: 28px;
-      right: 28px;
-      background: #10b981;
+      bottom: 32px;
+      right: 32px;
+      background: #0f172a;
       color: #fff;
-      padding: 14px 24px;
-      border-radius: 10px;
+      border-left: 5px solid #10b981;
+      padding: 14px 22px;
+      border-radius: 12px;
       font-weight: 600;
-      font-size: 15px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+      font-size: 14.5px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
       opacity: 0;
-      transform: translateY(12px);
+      transform: translateY(16px);
       pointer-events: none;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      z-index: 1000;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    [data-theme="dark"] .toast {
+      background: #1e293b;
+      border-color: #34d399;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
     }
 
     .toast.show {
@@ -244,26 +592,139 @@
       transform: translateY(0);
     }
 
+    /* 回頂部按鈕 (Floating Back to Top) */
+    .back-to-top {
+      position: fixed;
+      bottom: 32px;
+      left: 32px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: all 0.25s ease;
+      z-index: 99;
+    }
+
+    .back-to-top.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .back-to-top:hover {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* 頁尾精緻版權宣告 */
+    footer {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 0 20px 48px 20px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13.5px;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* 響應式優化 (Mobile & Tablet) */
     @media (max-width: 768px) {
       header {
         flex-direction: column;
         align-items: stretch;
+        padding: 12px 16px;
+        gap: 12px;
       }
+
+      .header-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .nav-links {
+        justify-content: flex-start;
+      }
+
       .page-section {
-        padding: 24px 20px;
+        padding: 24px 18px;
+        border-radius: 14px;
+        margin-bottom: 24px;
+      }
+
+      .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .insight-box {
+        padding: 16px 16px 18px 16px;
+        margin: 18px 0 22px 0;
+      }
+
+      .controls-wrapper {
+        padding: 0 16px;
+      }
+
+      main {
+        padding: 0 16px;
+        margin-bottom: 60px;
+      }
+
+      .toast {
+        left: 16px;
+        right: 16px;
+        bottom: 20px;
+        text-align: center;
+        justify-content: center;
+      }
+
+      .back-to-top {
+        bottom: 20px;
+        left: auto;
+        right: 16px;
       }
     }
   </style>
 </head>
 <body>
 
+  <!-- 頂部閱讀進度指示條 -->
+  <div id="readingProgress"></div>
+
   <header>
-    <div class="header-title">
-      📖 祐維筆記與心得
+    <div class="header-left">
+      <a href="#" class="brand-logo">
+        <span class="brand-icon">📖</span>
+        <span class="brand-title">祐維筆記與心得</span>
+      </a>
+      <span class="brand-badge">智慧精選</span>
     </div>
 
     <nav class="nav-links">
-      <a href="#page1" class="nav-btn">第一頁</a>
+      <a href="#page1" class="nav-btn active">第一頁</a>
       <a href="#page2" class="nav-btn">第二頁</a>
       <a href="#page3" class="nav-btn">第三頁</a>
       <a href="#page4" class="nav-btn">第四頁</a>
@@ -275,158 +736,232 @@
     </div>
   </header>
 
+  <!-- 搜尋與閱讀控制欄 -->
+  <div class="controls-wrapper">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" class="search-input" placeholder="搜尋筆記與心得關鍵字... (例如: 渡人、因果、利天、觀音)" />
+    </div>
+    <div class="font-controls">
+      <span style="font-size: 12px; color: var(--text-muted); font-weight: 600; margin-right: 4px;">字級</span>
+      <button class="font-btn" id="fontDec" title="縮小字體">A-</button>
+      <button class="font-btn" id="fontReset" title="預設大小">A</button>
+      <button class="font-btn" id="fontInc" title="放大字體">A+</button>
+    </div>
+  </div>
+
   <main id="contentContainer">
+
+    <!-- 第一頁 -->
     <section class="page-section" id="page1">
-      <div class="page-title">
-        <span>第一頁</span>
+      <div class="page-header">
+        <div class="page-title-group">
+          <span class="page-pill">PAGE 01</span>
+          <h2 class="page-title">第一頁</h2>
+        </div>
+        <button class="page-action-btn" data-page="page1">📋 複製本頁</button>
       </div>
       <div class="note-content">
-        <div class="note-line">* ☆ 男女朋友、家人，要忍耐，是最難渡的</div>
-        <div class="note-line">* 心裡想為對方好即可。（⟹ 信念舉一反三）</div>
-        <div class="note-line">* ☆ 如何破解？不要太在意（太在意你就輸了）</div>
-        <div class="note-line">* ☆ 能完全忍，太厲害了，要單純點</div>
+        <div class="note-line" data-raw="* ☆ 男女朋友、家人，要忍耐，是最難渡的"><span class="badge-star">★</span> 男女朋友、家人，要忍耐，是最難渡的</div>
+        <div class="note-line" data-raw="* 心裡想為對方好即可。（⟹ 信念舉一反三）">* 心裡想為對方好即可。（⟹ 信念舉一反三）</div>
+        <div class="note-line" data-raw="* ☆ 如何破解？不要太在意（太在意你就輸了）"><span class="badge-star">★</span> 如何破解？不要太在意（太在意你就輸了）</div>
+        <div class="note-line" data-raw="* ☆ 能完全忍，太厲害了，要單純點"><span class="badge-star">★</span> 能完全忍，太厲害了，要單純點</div>
+        
+        <!-- 祐維心得 1 (橘色框格線) -->
         <div class="insight-box" data-insight="這句話是有韻味的，是在提醒有緣人不要硬來，人不是靠忍耐過生活，如果想法多又複雜，百密總有一疏是無法完全防範（累的是自己的心）">
           <div class="insight-header">
             <span class="insight-badge">💡 祐維心得</span>
+            <button class="insight-copy-btn">📋 複製心得</button>
           </div>
           <div class="insight-text">這句話是有韻味的，是在提醒有緣人不要硬來，人不是靠忍耐過生活，如果想法多又複雜，百密總有一疏是無法完全防範（累的是自己的心）</div>
         </div>
-        <div class="note-line">* ☆ 人不要吃醋，要有成人之美，這是仙佛的心，最有福報的人。</div>
+
+        <div class="note-line" data-raw="* ☆ 人不要吃醋，要有成人之美，這是仙佛的心，最有福報的人。"><span class="badge-star">★</span> 人不要吃醋，要有成人之美，這是仙佛的心，最有福報的人。</div>
+        
+        <!-- 祐維心得 2 (橘色框格線) -->
         <div class="insight-box" data-insight="這個弟子很有體悟，自從進入法門並被仙佛協助圓滿因果後，並在學智慧的過程中，發現很多事情會自然的不執著，跟以前的自己差異非常巨大，所以非常感謝師父與仙佛的開示，持續渡化弟子這顆『頑石』。">
           <div class="insight-header">
             <span class="insight-badge">💡 祐維心得</span>
+            <button class="insight-copy-btn">📋 複製心得</button>
           </div>
           <div class="insight-text">這個弟子很有體悟，自從進入法門並被仙佛協助圓滿因果後，並在學智慧的過程中，發現很多事情會自然的不執著，跟以前的自己差異非常巨大，所以非常感謝師父與仙佛的開示，持續渡化弟子這顆『頑石』。</div>
         </div>
-        <div class="note-line">* 不好的，解除他，解除對方的困頓 ↳ 或透過某種方式改變他，功果很大。</div>
-        <div class="note-line">* ☆ 智慧你學到某個程度，不富有也很難</div>
-        <div class="note-line">* ☆ 有方法有智慧，差別在利己、利人、利天 ──► 仙佛</div>
-        <div class="note-line">* 魚籃觀音故事：善意的謊言</div>
+
+        <div class="note-line" data-raw="* 不好的，解除他，解除對方的困頓 ↳ 或透過某種方式改變他，功果很大。">* 不好的，解除他，解除對方的困頓 ↳ 或透過某種方式改變他，功果很大。</div>
+        <div class="note-line" data-raw="* ☆ 智慧你學到某個程度，不富有也很難"><span class="badge-star">★</span> 智慧你學到某個程度，不富有也很難</div>
+        <div class="note-line" data-raw="* ☆ 有方法有智慧，差別在利己、利人、利天 ──► 仙佛"><span class="badge-star">★</span> 有方法有智慧，差別在利己、利人、利天 ──► 仙佛</div>
+        <div class="note-line" data-raw="* 魚籃觀音故事：善意的謊言">* 魚籃觀音故事：善意的謊言</div>
+
+        <!-- 祐維心得 3 (橘色框格線) -->
         <div class="insight-box" data-insight="非常感謝魚籃觀音菩薩，因為有這則故事，讓弟子可以知道所謂的智慧，是善意的替對方著想，所以能更靈活的去與人互動，心中有魚籃觀音的精神去渡人，善意的謊言有時可靈活可必要。">
           <div class="insight-header">
             <span class="insight-badge">💡 祐維心得</span>
+            <button class="insight-copy-btn">📋 複製心得</button>
           </div>
           <div class="insight-text">非常感謝魚籃觀音菩薩，因為有這則故事，讓弟子可以知道所謂的智慧，是善意的替對方著想，所以能更靈活的去與人互動，心中有魚籃觀音的精神去渡人，善意的謊言有時可靈活可必要。</div>
         </div>
-        <div class="note-line">* ☆ 不要去破壞跟自己無關的事</div>
-        <div class="note-line">* 抱怨 ⇒ 犯瞋心</div>
-        <div class="note-line">* ① 負面想法（憂鬱症） → 解藥：讚美 ⇒ 產生相信</div>
-        <div class="note-line">* ☆ 你想多了，不是你想的這樣</div>
-        <div class="note-line">* 精神有狀況 ⇒ 被害妄想症</div>
-        <div class="note-line">* ② 前後感受好後（慢慢改善）</div>
-        <div class="note-line">* 讚美 ⇒ 利天</div>
-        <div class="note-line">* ↳ 你這樣講的是對的，（開始告訴他正確思路）</div>
-        <div class="note-line">* ↳ 有信任感後 ⇒ 你要相信我</div>
+
+        <div class="note-line" data-raw="* ☆ 不要去破壞跟自己無關的事"><span class="badge-star">★</span> 不要去破壞跟自己無關的事</div>
+        <div class="note-line" data-raw="* 抱怨 ⇒ 犯瞋心">* 抱怨 ⇒ 犯瞋心</div>
+        <div class="note-line" data-raw="* ① 負面想法（憂鬱症） → 解藥：讚美 ⇒ 產生相信"><span class="badge-step">步驟 1</span> 負面想法（憂鬱症） → 解藥：讚美 ⇒ 產生相信</div>
+        <div class="note-line" data-raw="* ☆ 你想多了，不是你想的這樣"><span class="badge-star">★</span> 你想多了，不是你想的這樣</div>
+        <div class="note-line" data-raw="* 精神有狀況 ⇒ 被害妄想症">* 精神有狀況 ⇒ 被害妄想症</div>
+        <div class="note-line" data-raw="* ② 前後感受好後（慢慢改善）"><span class="badge-step">步驟 2</span> 前後感受好後（慢慢改善）</div>
+        <div class="note-line" data-raw="* 讚美 ⇒ 利天">* 讚美 ⇒ 利天</div>
+        <div class="note-line" data-raw="* ↳ 你這樣講的是對的，（開始告訴他正確思路）">* ↳ 你這樣講的是對的，（開始告訴他正確思路）</div>
+        <div class="note-line" data-raw="* ↳ 有信任感後 ⇒ 你要相信我">* ↳ 有信任感後 ⇒ 你要相信我</div>
+
+        <!-- 祐維心得 4 (橘色框格線) -->
         <div class="insight-box" data-insight="針對負面想法的人，除了告訴對方會產生這些結果（給對方觀念）外，重點在提升信任感後，直言告訴對方：”你要相信我“ 是破題有機會成功渡到對方的方法。">
           <div class="insight-header">
             <span class="insight-badge">💡 祐維心得</span>
+            <button class="insight-copy-btn">📋 複製心得</button>
           </div>
           <div class="insight-text">針對負面想法的人，除了告訴對方會產生這些結果（給對方觀念）外，重點在提升信任感後，直言告訴對方：”你要相信我“ 是破題有機會成功渡到對方的方法。</div>
         </div>
       </div>
     </section>
+
+    <!-- 第二頁 -->
     <section class="page-section" id="page2">
-      <div class="page-title">
-        <span>第二頁</span>
+      <div class="page-header">
+        <div class="page-title-group">
+          <span class="page-pill">PAGE 02</span>
+          <h2 class="page-title">第二頁</h2>
+        </div>
+        <button class="page-action-btn" data-page="page2">📋 複製本頁</button>
       </div>
       <div class="note-content">
-        <div class="note-line">* ☆ 靈界好神可以幫助到有緣人</div>
-        <div class="note-line">* ☆ 把每一天都當最後一天</div>
-        <div class="note-line">* ☆ 渡人時像仙佛一樣（像樣）</div>
-        <div class="note-line">* ☆ 經歷過那麼多法門，學那麼多智慧，你就像從高中升大學一樣</div>
-        <div class="note-line">* 所以你真正需要的是找到最適合你的法門（能真正幫助到你）</div>
-        <div class="note-line">* ↳ 用這樣的方式有成功引渡到弟子</div>
-        <div class="note-line">* 想賺 $ 的：你想不想擁有賺更多錢的機會？</div>
-        <div class="note-line">* ☆ 渡人時，敢展現和一般人不一樣（附加價值）之處 ⇒ 好奇心</div>
-        <div class="note-line">* **渡人五步驟**：</div>
-        <div class="note-line">* ① 勤看筆記</div>
-        <div class="note-line">* ② 練 QA</div>
-        <div class="note-line">* ③ 分享自身改變</div>
-        <div class="note-line">* ④ 分享附加價值（自己會什麼）</div>
-        <div class="note-line">* ⑤ 分享智慧語錄</div>
-        <div class="note-line">* ☆ 幫助有緣人時，初期一定要讓對方化到五路祈福金</div>
-        <div class="note-line">* ↳ 藥引 ⇒ 借力使力（組長、師父）</div>
-        <div class="note-line">* 化金累積福報 ⇒ 貴人才能聽得懂我們講的話，而非解困頓</div>
-        <div class="note-line">* ☆ 提升智慧可以幫助我們選對的人、對的事情，這些智慧都是日積月累</div>
-        <div class="note-line">* ☆ 同門之間是交流，非追隨，不要本末倒置</div>
-        <div class="note-line">* ☆ 突破大腦限制時，會產生負面情緒，要找好幫手、組長提攜</div>
-        <div class="note-line">* 引渡人：邀約、信任</div>
+        <div class="note-line" data-raw="* ☆ 靈界好神可以幫助到有緣人"><span class="badge-star">★</span> 靈界好神可以幫助到有緣人</div>
+        <div class="note-line" data-raw="* ☆ 把每一天都當最後一天"><span class="badge-star">★</span> 把每一天都當最後一天</div>
+        <div class="note-line" data-raw="* ☆ 渡人時像仙佛一樣（像樣）"><span class="badge-star">★</span> 渡人時像仙佛一樣（像樣）</div>
+        <div class="note-line" data-raw="* ☆ 經歷過那麼多法門，學那麼多智慧，你就像從高中升大學一樣"><span class="badge-star">★</span> 經歷過那麼多法門，學那麼多智慧，你就像從高中升大學一樣</div>
+        <div class="note-line" data-raw="* 所以你真正需要的是找到最適合你的法門（能真正幫助到你）">* 所以你真正需要的是找到最適合你的法門（能真正幫助到你）</div>
+        <div class="note-line" data-raw="* ↳ 用這樣的方式有成功引渡到弟子">* ↳ 用這樣的方式有成功引渡到弟子</div>
+        <div class="note-line" data-raw="* 想賺 $ 的：你想不想擁有賺更多錢的機會？">* 想賺 $ 的：你想不想擁有賺更多錢的機會？</div>
+        <div class="note-line" data-raw="* ☆ 渡人時，敢展現和一般人不一樣（附加價值）之處 ⇒ 好奇心"><span class="badge-star">★</span> 渡人時，敢展現和一般人不一樣（附加價值）之處 ⇒ 好奇心</div>
+        <div class="note-line" data-raw="* **渡人五步驟**："><strong>* 渡人五步驟：</strong></div>
+        <div class="note-line" data-raw="* ① 勤看筆記"><span class="badge-step">步驟 1</span> 勤看筆記</div>
+        <div class="note-line" data-raw="* ② 練 QA"><span class="badge-step">步驟 2</span> 練 QA</div>
+        <div class="note-line" data-raw="* ③ 分享自身改變"><span class="badge-step">步驟 3</span> 分享自身改變</div>
+        <div class="note-line" data-raw="* ④ 分享附加價值（自己會什麼）"><span class="badge-step">步驟 4</span> 分享附加價值（自己會什麼）</div>
+        <div class="note-line" data-raw="* ⑤ 分享智慧語錄"><span class="badge-step">步驟 5</span> 分享智慧語錄</div>
+        <div class="note-line" data-raw="* ☆ 幫助有緣人時，初期一定要讓對方化到五路祈福金"><span class="badge-star">★</span> 幫助有緣人時，初期一定要讓對方化到五路祈福金</div>
+        <div class="note-line" data-raw="* ↳ 藥引 ⇒ 借力使力（組長、師父）">* ↳ 藥引 ⇒ 借力使力（組長、師父）</div>
+        <div class="note-line" data-raw="* 化金累積福報 ⇒ 貴人才能聽得懂我們講的話，而非解困頓">* 化金累積福報 ⇒ 貴人才能聽得懂我們講的話，而非解困頓</div>
+        <div class="note-line" data-raw="* ☆ 提升智慧可以幫助我們選對的人、對的事情，這些智慧都是日積月累"><span class="badge-star">★</span> 提升智慧可以幫助我們選對的人、對的事情，這些智慧都是日積月累</div>
+        <div class="note-line" data-raw="* ☆ 同門之間是交流，非追隨，不要本末倒置"><span class="badge-star">★</span> 同門之間是交流，非追隨，不要本末倒置</div>
+        <div class="note-line" data-raw="* ☆ 突破大腦限制時，會產生負面情緒，要找好幫手、組長提攜"><span class="badge-star">★</span> 突破大腦限制時，會產生負面情緒，要找好幫手、組長提攜</div>
+        <div class="note-line" data-raw="* 引渡人：邀約、信任">* 引渡人：邀約、信任</div>
       </div>
     </section>
+
+    <!-- 第三頁 -->
     <section class="page-section" id="page3">
-      <div class="page-title">
-        <span>第三頁</span>
+      <div class="page-header">
+        <div class="page-title-group">
+          <span class="page-pill">PAGE 03</span>
+          <h2 class="page-title">第三頁</h2>
+        </div>
+        <button class="page-action-btn" data-page="page3">📋 複製本頁</button>
       </div>
       <div class="note-content">
-        <div class="note-line">* 111/11/20　智慧講座（師母,皓竣,伯融）　主講**</div>
-        <div class="note-line">* 天時緊急.家中可設先天 無極 佛堂（最圓滿）,或先天八卦避煞陣,家裡就有仙佛護佑.</div>
-        <div class="note-line">* 弟子家中如無阻礙,應以設先天 無極 佛堂為目標.</div>
-        <div class="note-line">* 有渡到 一位有緣人,即可在家開智慧講座課程.</div>
-        <div class="note-line">* 師父.師母可支援</div>
-        <div class="note-line">* 有緣人：感恩的心,聽話照做,認識法門一定程度（信任）</div>
-        <div class="note-line">* 往後師父不在現場,皆不可坐靈、靈坐，即日起學智慧,把智慧學好.</div>
-        <div class="note-line">* （以上）六心具足,有效率渡人</div>
-        <div class="note-line">* 稟報=信念具足的意思</div>
-        <div class="note-line">* 渡人時要注意的點：</div>
-        <div class="note-line">* ↳ "先培養關係"</div>
-        <div class="note-line">* ①平常關心聊天的好習慣.</div>
-        <div class="note-line">* ②發現困頓時,蒐集資訊給組長,No自己渡/給對方答案.（大家會幫你做功果）</div>
-        <div class="note-line">* 被問倒時,不用回答."這個問題我無法回覆你,我幫你請教組長/心靈導師,暫時No 師父"</div>
-        <div class="note-line">* ③確認有緣人達到一定程度時,（對方很有心）再請示師父</div>
-        <div class="note-line">* 師母：協渡也算功果,不用想自己沒有有緣人</div>
+        <div class="note-line" data-raw="* 111/11/20　智慧講座（師母,皓竣,伯融）　主講**"><strong>* 111/11/20 智慧講座（師母,皓竣,伯融） 主講</strong></div>
+        <div class="note-line" data-raw="* 天時緊急.家中可設先天 無極 佛堂（最圓滿）,或先天八卦避煞陣,家裡就有仙佛護佑.">* 天時緊急.家中可設先天 無極 佛堂（最圓滿）,或先天八卦避煞陣,家裡就有仙佛護佑.</div>
+        <div class="note-line" data-raw="* 弟子家中如無阻礙,應以設先天 無極 佛堂為目標.">* 弟子家中如無阻礙,應以設先天 無極 佛堂為目標.</div>
+        <div class="note-line" data-raw="* 有渡到 一位有緣人,即可在家開智慧講座課程.">* 有渡到 一位有緣人,即可在家開智慧講座課程.</div>
+        <div class="note-line" data-raw="* 師父.師母可支援">* 師父.師母可支援</div>
+        <div class="note-line" data-raw="* 有緣人：感恩的心,聽話照做,認識法門一定程度（信任）">* 有緣人：感恩的心,聽話照做,認識法門一定程度（信任）</div>
+        <div class="note-line" data-raw="* 往後師父不在現場,皆不可坐靈、靈坐，即日起學智慧,把智慧學好.">* 往後師父不在現場,皆不可坐靈、靈坐，即日起學智慧,把智慧學好.</div>
+        <div class="note-line" data-raw="* （以上）六心具足,有效率渡人">* （以上）六心具足,有效率渡人</div>
+        <div class="note-line" data-raw="* 稟報=信念具足的意思">* 稟報=信念具足的意思</div>
+        <div class="note-line" data-raw="* 渡人時要注意的點："><strong>* 渡人時要注意的點：</strong></div>
+        <div class="note-line" data-raw="* ↳ &quot;先培養關係&quot;">* ↳ "先培養關係"</div>
+        <div class="note-line" data-raw="* ①平常關心聊天的好習慣."><span class="badge-step">要點 1</span> 平常關心聊天的好習慣.</div>
+        <div class="note-line" data-raw="* ②發現困頓時,蒐集資訊給組長,No自己渡/給對方答案.（大家會幫你做功果）"><span class="badge-step">要點 2</span> 發現困頓時,蒐集資訊給組長,No自己渡/給對方答案.（大家會幫你做功果）</div>
+        <div class="note-line" data-raw="* 被問倒時,不用回答.&quot;這個問題我無法回覆你,我幫你請教組長/心靈導師,暫時No 師父&quot;">* 被問倒時,不用回答."這個問題我無法回覆你,我幫你請教組長/心靈導師,暫時No 師父"</div>
+        <div class="note-line" data-raw="* ③確認有緣人達到一定程度時,（對方很有心）再請示師父"><span class="badge-step">要點 3</span> 確認有緣人達到一定程度時,（對方很有心）再請示師父</div>
+        <div class="note-line" data-raw="* 師母：協渡也算功果,不用想自己沒有有緣人">* 師母：協渡也算功果,不用想自己沒有有緣人</div>
+
+        <!-- 祐維心得 5 (橘色框格線) -->
         <div class="insight-box" data-insight="現在回頭來看以前的筆記，大家都有所成長，其實觀念跟互動師父都曾開示過，只差在我們能夠執行幾分。">
           <div class="insight-header">
             <span class="insight-badge">💡 祐維心得</span>
+            <button class="insight-copy-btn">📋 複製心得</button>
           </div>
           <div class="insight-text">現在回頭來看以前的筆記，大家都有所成長，其實觀念跟互動師父都曾開示過，只差在我們能夠執行幾分。</div>
         </div>
       </div>
     </section>
+
+    <!-- 第四頁 -->
     <section class="page-section" id="page4">
-      <div class="page-title">
-        <span>第四頁</span>
+      <div class="page-header">
+        <div class="page-title-group">
+          <span class="page-pill">PAGE 04</span>
+          <h2 class="page-title">第四頁</h2>
+        </div>
+        <button class="page-action-btn" data-page="page4">📋 複製本頁</button>
       </div>
       <div class="note-content">
-        <div class="note-line">* 111/11/27 師母/融哥智慧講座.</div>
-        <div class="note-line">* 師父開示：</div>
-        <div class="note-line">* 我們是一個團隊，目標回天的一家人，</div>
-        <div class="note-line">* 渡人不是靠自己，而是要互相請教，</div>
-        <div class="note-line">* 組長及同門師兄姐們成就彼此，累積功果.</div>
-        <div class="note-line">* 師父這邊也能提供更多資源</div>
-        <div class="note-line">* **師母：「助人渡人像呼吸一樣自然」（九年前）**</div>
-        <div class="note-line">* 累積功果，仙佛來會賜天上財，天道酬勤的心態，就是順心如意</div>
-        <div class="note-line">* 財神星君開示，財富分兩種，一種是人間財，一種是功果財</div>
-        <div class="note-line">* ↓人間財↓：</div>
-        <div class="note-line">* 靠自己努力，人定勝天，往往因遇到小人、因果追討，造成一夕損失，又或者是一輩子為人賺錢，因智慧不足，產生無底洞。</div>
-        <div class="note-line">* ↓功果財↓：</div>
-        <div class="note-line">* 必須突破大腦設限，追隨天公老祖的慈悲與智慧，做利己利人利天的事情，在渡人過程中，各位有付出時間/精神，自然上天以功果薪給我們報酬，合情合理，且能累天上功果，功果具足，就可以回歸本位。</div>
-        <div class="note-line">* ↑追隨 師父 無極 天公老祖 先天智慧真道這法門才有的↑</div>
-        <div class="note-line">* 什麼是利己/利人/利天？</div>
-        <div class="note-line">* 利己：渡人得功果，在過程當中還能覺察自己不足的地方，並且提升自己人生，越來越光彩（快樂）.</div>
-        <div class="note-line">* 利人：幫助有緣人真正跳脫困頓，轉變人生,甚至能救他一命</div>
-        <div class="note-line">* 利天：讓與你有緣的仙佛歡喜，仙佛願意乘願來幫忙,有誠心的人</div>
-        <div class="note-line">* 做功果渡人，要很積極，有意義的用自己的崗位、天份做功果，這會讓你越來越有精神。</div>
-        <div class="note-line">* ↳ 人生天道酬勤</div>
+        <div class="note-line" data-raw="* 111/11/27 師母/融哥智慧講座."><strong>* 111/11/27 師母/融哥智慧講座.</strong></div>
+        <div class="note-line" data-raw="* 師父開示："><strong>* 師父開示：</strong></div>
+        <div class="note-line" data-raw="* 我們是一個團隊，目標回天的一家人，">* 我們是一個團隊，目標回天的一家人，</div>
+        <div class="note-line" data-raw="* 渡人不是靠自己，而是要互相請教，">* 渡人不是靠自己，而是要互相請教，</div>
+        <div class="note-line" data-raw="* 組長及同門師兄姐們成就彼此，累積功果.">* 組長及同門師兄姐們成就彼此，累積功果.</div>
+        <div class="note-line" data-raw="* 師父這邊也能提供更多資源">* 師父這邊也能提供更多資源</div>
+        <div class="note-line" data-raw="* **師母：「助人渡人像呼吸一樣自然」（九年前）**"><strong>* 師母：「助人渡人像呼吸一樣自然」（九年前）</strong></div>
+        <div class="note-line" data-raw="* 累積功果，仙佛來會賜天上財，天道酬勤的心態，就是順心如意">* 累積功果，仙佛來會賜天上財，天道酬勤的心態，就是順心如意</div>
+        <div class="note-line" data-raw="* 財神星君開示，財富分兩種，一種是人間財，一種是功果財">* 財神星君開示，財富分兩種，一種是人間財，一種是功果財</div>
+        <div class="note-line" data-raw="* ↓人間財↓："><strong>* ↓人間財↓：</strong></div>
+        <div class="note-line" data-raw="* 靠自己努力，人定勝天，往往因遇到小人、因果追討，造成一夕損失，又或者是一輩子為人賺錢，因智慧不足，產生無底洞。">* 靠自己努力，人定勝天，往往因遇到小人、因果追討，造成一夕損失，又或者是一輩子為人賺錢，因智慧不足，產生無底洞。</div>
+        <div class="note-line" data-raw="* ↓功果財↓："><strong>* ↓功果財↓：</strong></div>
+        <div class="note-line" data-raw="* 必須突破大腦設限，追隨天公老祖的慈悲與智慧，做利己利人利天的事情，在渡人過程中，各位有付出時間/精神，自然上天以功果薪給我們報酬，合情合理，且能累天上功果，功果具足，就可以回歸本位。">* 必須突破大腦設限，追隨天公老祖的慈悲與智慧，做利己利人利天的事情，在渡人過程中，各位有付出時間/精神，自然上天以功果薪給我們報酬，合情合理，且能累天上功果，功果具足，就可以回歸本位。</div>
+        <div class="note-line" data-raw="* ↑追隨 師父 無極 天公老祖 先天智慧真道這法門才有的↑"><em>* ↑追隨 師父 無極 天公老祖 先天智慧真道這法門才有的↑</em></div>
+        <div class="note-line" data-raw="* 什麼是利己/利人/利天？"><strong>* 什麼是利己/利人/利天？</strong></div>
+        <div class="note-line" data-raw="* 利己：渡人得功果，在過程當中還能覺察自己不足的地方，並且提升自己人生，越來越光彩（快樂）."><strong style="color:var(--accent);">* 利己：</strong>渡人得功果，在過程當中還能覺察自己不足的地方，並且提升自己人生，越來越光彩（快樂）.</div>
+        <div class="note-line" data-raw="* 利人：幫助有緣人真正跳脫困頓，轉變人生,甚至能救他一命"><strong style="color:var(--accent);">* 利人：</strong>幫助有緣人真正跳脫困頓，轉變人生,甚至能救他一命</div>
+        <div class="note-line" data-raw="* 利天：讓與你有緣的仙佛歡喜，仙佛願意乘願來幫忙,有誠心的人"><strong style="color:var(--accent);">* 利天：</strong>讓與你有緣的仙佛歡喜，仙佛願意乘願來幫忙,有誠心的人</div>
+        <div class="note-line" data-raw="* 做功果渡人，要很積極，有意義的用自己的崗位、天份做功果，這會讓你越來越有精神。">* 做功果渡人，要很積極，有意義的用自己的崗位、天份做功果，這會讓你越來越有精神。</div>
+        <div class="note-line" data-raw="* ↳ 人生天道酬勤">* ↳ 人生天道酬勤</div>
+
+        <!-- 祐維心得 6 (橘色框格線) -->
         <div class="insight-box" data-insight="目前重新複習筆記以後，讓弟子持續提升信念：關於在渡人的信念要維持，有付出時間/精神，自然上天會給我們報酬，且可以避開人定勝天的因果陷阱，就像師父曾經講過：人字有兩撇，人定勝天和天道酬勤，要選哪一邊，弟子是一定會選天道酬勤這一邊，中間遇到的阻礙也會一一克服。再次感謝師父 無極 天公老祖 與眾仙佛的開示與提點。">
           <div class="insight-header">
             <span class="insight-badge">💡 祐維心得</span>
+            <button class="insight-copy-btn">📋 複製心得</button>
           </div>
           <div class="insight-text">目前重新複習筆記以後，讓弟子持續提升信念：關於在渡人的信念要維持，有付出時間/精神，自然上天會給我們報酬，且可以避開人定勝天的因果陷阱，就像師父曾經講過：人字有兩撇，人定勝天和天道酬勤，要選哪一邊，弟子是一定會選天道酬勤這一邊，中間遇到的阻礙也會一一克服。再次感謝師父 無極 天公老祖 與眾仙佛的開示與提點。</div>
         </div>
       </div>
     </section>
+
   </main>
 
+  <footer>
+    <p>📖 祐維筆記與心得 • 先天智慧真道 智慧講座精華整理</p>
+    <p style="margin-top: 6px; font-size: 12px; opacity: 0.8;">版面優化與橘色匡格線樣式已升級</p>
+  </footer>
+
+  <!-- 提示元件 -->
   <div class="toast" id="toast"></div>
 
+  <!-- 回頂部懸浮按鈕 -->
+  <button class="back-to-top" id="backToTopBtn" title="回到頂部">↑</button>
+
   <script>
-    // 產生並複製帶有方框（隔離效果）的筆記全文
-    function buildFormattedText() {
-      const sections = document.querySelectorAll('.page-section');
-      let fullText = '# 上課筆記智慧講座（精選四頁）\n\n';
+    // 產生指定節點或全部頁面的格式化文字（包含祐維心得方框效果）
+    function buildFormattedText(targetElement = null) {
+      const root = targetElement || document;
+      const sections = root.classList && root.classList.contains('page-section') 
+        ? [root] 
+        : root.querySelectorAll('.page-section');
+      
+      let fullText = targetElement ? '' : '# 上課筆記智慧講座（精選四頁）\n\n';
       
       sections.forEach((sec, idx) => {
-        const title = sec.querySelector('.page-title span').innerText.trim();
+        const titleEl = sec.querySelector('.page-title');
+        const title = titleEl ? titleEl.innerText.trim() : `第 ${idx + 1} 頁`;
         fullText += '## ' + title + '\n';
         
         const children = sec.querySelector('.note-content').children;
@@ -437,7 +972,8 @@
             fullText += '│ ' + txt + '\n';
             fullText += '└──────────────────────────────────────────────────────────────\n';
           } else if (el.classList.contains('note-line')) {
-            fullText += el.innerText.trim() + '\n';
+            const raw = el.getAttribute('data-raw') || el.innerText.trim();
+            fullText += raw + '\n';
           }
         }
         
@@ -457,25 +993,55 @@
       setTimeout(() => toast.classList.remove('show'), 2600);
     }
 
-    copyAllBtn.addEventListener('click', () => {
-      const formatted = buildFormattedText();
-      navigator.clipboard.writeText(formatted).then(() => {
-        showToast('✅ 全選複製成功！「祐維心得」已套用隔離方框格式！');
+    function copyToClipboard(text, successMsg) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(successMsg);
       }).catch(() => {
         const textarea = document.createElement('textarea');
-        textarea.value = formatted;
+        textarea.value = text;
         document.body.appendChild(textarea);
         textarea.select();
         document.execCommand('copy');
         document.body.removeChild(textarea);
-        showToast('✅ 全選複製成功！「祐維心得」已套用隔離方框格式！');
+        showToast(successMsg);
+      });
+    }
+
+    // 全選複製文字按鈕
+    copyAllBtn.addEventListener('click', () => {
+      const formatted = buildFormattedText();
+      copyToClipboard(formatted, '✅ 全選複製成功！「祐維心得」已套用隔離方框格式！');
+    });
+
+    // 單頁複製按鈕
+    document.querySelectorAll('.page-action-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const sectionId = btn.getAttribute('data-page');
+        const section = document.getElementById(sectionId);
+        if (section) {
+          const text = buildFormattedText(section);
+          const pageTitle = section.querySelector('.page-title').innerText.trim();
+          copyToClipboard(text, `✅ 已成功複製「${pageTitle}」內容！`);
+        }
       });
     });
 
-    // 鍵盤 Cmd+A / Ctrl+A 全選後複製時，亦自動提供方框隔離版本
+    // 個別「祐維心得」複製按鈕
+    document.querySelectorAll('.insight-copy-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const box = btn.closest('.insight-box');
+        const txt = box.getAttribute('data-insight') || box.querySelector('.insight-text').innerText.trim();
+        const formatted = '┌──【 祐維心得 】──────────────────────────────────────────────\n' +
+                          '│ ' + txt + '\n' +
+                          '└──────────────────────────────────────────────────────────────';
+        copyToClipboard(formatted, '✅ 已複製該條「祐維心得」（附橘色方框格式）！');
+      });
+    });
+
+    // 鍵盤 Cmd+A / Ctrl+A 全選後複製時，自動提供方框隔離版本
     document.addEventListener('copy', (e) => {
       const selection = window.getSelection().toString();
-      // 若全選或大範圍選取，注入帶有方框格式之文字
       if (selection.length > 500) {
         e.preventDefault();
         const formatted = buildFormattedText();
@@ -484,16 +1050,113 @@
       }
     });
 
-    // Theme toggle
+    // 深色 / 淺色模式切換與記憶
     const themeBtn = document.getElementById('themeBtn');
-    let isDark = false;
+    const savedTheme = localStorage.getItem('youwei-theme');
+    
+    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      themeBtn.textContent = '☀️ 淺色';
+    } else {
+      themeBtn.textContent = '🌙 深色';
+    }
+
     themeBtn.addEventListener('click', () => {
-      isDark = !isDark;
-      if (isDark) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      } else {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      if (currentTheme === 'dark') {
         document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('youwei-theme', 'light');
+        themeBtn.textContent = '🌙 深色';
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('youwei-theme', 'dark');
+        themeBtn.textContent = '☀️ 淺色';
       }
+    });
+
+    // 閱讀進度條與回頂部按鈕監聽
+    const readingProgress = document.getElementById('readingProgress');
+    const backToTopBtn = document.getElementById('backToTopBtn');
+    const navBtns = document.querySelectorAll('.nav-btn');
+    const sections = document.querySelectorAll('.page-section');
+
+    window.addEventListener('scroll', () => {
+      const scrollTotal = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (window.scrollY / scrollTotal) * 100;
+      readingProgress.style.width = Math.min(100, Math.max(0, progress)) + '%';
+
+      if (window.scrollY > 300) {
+        backToTopBtn.classList.add('show');
+      } else {
+        backToTopBtn.classList.remove('show');
+      }
+
+      // ScrollSpy 追蹤當前正在閱讀的頁面
+      let currentSection = '';
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 120;
+        const height = sec.offsetHeight;
+        if (window.scrollY >= top && window.scrollY < top + height) {
+          currentSection = sec.getAttribute('id');
+        }
+      });
+
+      if (currentSection) {
+        navBtns.forEach(btn => {
+          if (btn.getAttribute('href') === '#' + currentSection) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        });
+      }
+    }, { passive: true });
+
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // 字體大小調整控制
+    let currentFontSize = 16.5;
+    const rootEl = document.documentElement;
+    document.getElementById('fontInc').addEventListener('click', () => {
+      if (currentFontSize < 22) {
+        currentFontSize += 1.5;
+        rootEl.style.setProperty('--base-font-size', currentFontSize + 'px');
+      }
+    });
+    document.getElementById('fontDec').addEventListener('click', () => {
+      if (currentFontSize > 13.5) {
+        currentFontSize -= 1.5;
+        rootEl.style.setProperty('--base-font-size', currentFontSize + 'px');
+      }
+    });
+    document.getElementById('fontReset').addEventListener('click', () => {
+      currentFontSize = 16.5;
+      rootEl.style.setProperty('--base-font-size', currentFontSize + 'px');
+    });
+
+    // 關鍵字即時搜尋篩選
+    const searchInput = document.getElementById('searchInput');
+    searchInput.addEventListener('input', (e) => {
+      const q = e.target.value.trim().toLowerCase();
+      const allLines = document.querySelectorAll('.note-line, .insight-box');
+      
+      if (!q) {
+        allLines.forEach(el => el.style.display = '');
+        return;
+      }
+
+      allLines.forEach(el => {
+        const text = el.innerText.toLowerCase();
+        if (text.includes(q)) {
+          el.style.display = '';
+          el.style.backgroundColor = el.classList.contains('insight-box') ? '' : 'rgba(249, 115, 22, 0.12)';
+        } else {
+          el.style.display = 'none';
+          el.style.backgroundColor = '';
+        }
+      });
     });
   </script>
 </body>
