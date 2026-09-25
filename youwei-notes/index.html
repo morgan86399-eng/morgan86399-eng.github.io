@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>祐維筆記與心得</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --border: #e2e8f0;
+      --accent: #2563eb;
+      --accent-hover: #1d4ed8;
+      --star-color: #f59e0b;
+      --header-bg: rgba(255, 255, 255, 0.94);
+      --font-stack: -apple-system, BlinkMacSystemFont, "PingFang SC", "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
+      --insight-bg: #f0f7ff;
+      --insight-border: #3b82f6;
+      --insight-text: #1e3a8a;
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --accent: #3b82f6;
+      --accent-hover: #60a5fa;
+      --star-color: #fbbf24;
+      --header-bg: rgba(30, 41, 59, 0.94);
+      --insight-bg: rgba(30, 58, 138, 0.28);
+      --insight-border: #60a5fa;
+      --insight-text: #e0e7ff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: var(--font-stack);
+      line-height: 1.85;
+      font-size: 16.5px;
+      -webkit-font-smoothing: antialiased;
+      transition: background-color 0.25s, color 0.25s;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--header-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .header-title {
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      overflow-x: auto;
+    }
+
+    .nav-btn {
+      padding: 6px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      color: var(--text);
+      background: var(--border);
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav-btn:hover {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      border: 1px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border-color: var(--border);
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      background: var(--border);
+    }
+
+    main {
+      max-width: 900px;
+      margin: 32px auto 80px auto;
+      padding: 0 20px;
+    }
+
+    .page-section {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 36px 40px;
+      margin-bottom: 36px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.03);
+      scroll-margin-top: 80px;
+    }
+
+    .page-title {
+      font-size: 22px;
+      font-weight: 800;
+      padding-bottom: 14px;
+      margin-bottom: 22px;
+      border-bottom: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--accent);
+    }
+
+    .note-content {
+      font-size: 16.5px;
+      line-height: 2.05;
+      letter-spacing: 0.02em;
+    }
+
+    .note-line {
+      white-space: pre-wrap;
+      word-break: break-word;
+      margin-bottom: 8px;
+    }
+
+    /* 祐維心得方框特別強調與隔離樣式 */
+    .insight-box {
+      margin: 16px 0 20px 0;
+      padding: 16px 20px 18px 22px;
+      background: var(--insight-bg);
+      border: 2px solid var(--insight-border);
+      border-left: 6px solid var(--accent);
+      border-radius: 10px;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.08);
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .insight-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .insight-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--accent);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 13.5px;
+      padding: 3px 12px;
+      border-radius: 6px;
+      letter-spacing: 0.04em;
+    }
+
+    .insight-text {
+      color: var(--insight-text);
+      font-size: 16.5px;
+      line-height: 1.95;
+      letter-spacing: 0.02em;
+      font-weight: 500;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      background: #10b981;
+      color: #fff;
+      padding: 14px 24px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1000;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .page-section {
+        padding: 24px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-title">
+      📖 祐維筆記與心得
+    </div>
+
+    <nav class="nav-links">
+      <a href="#page1" class="nav-btn">第一頁</a>
+      <a href="#page2" class="nav-btn">第二頁</a>
+      <a href="#page3" class="nav-btn">第三頁</a>
+      <a href="#page4" class="nav-btn">第四頁</a>
+    </nav>
+
+    <div class="header-actions">
+      <button class="btn btn-outline" id="themeBtn" title="切換深色/淺色模式">🌓 主題</button>
+      <button class="btn btn-primary" id="copyAllBtn">📋 全選複製文字</button>
+    </div>
+  </header>
+
+  <main id="contentContainer">
+    <section class="page-section" id="page1">
+      <div class="page-title">
+        <span>第一頁</span>
+      </div>
+      <div class="note-content">
+        <div class="note-line">* ☆ 男女朋友、家人，要忍耐，是最難渡的</div>
+        <div class="note-line">* 心裡想為對方好即可。（⟹ 信念舉一反三）</div>
+        <div class="note-line">* ☆ 如何破解？不要太在意（太在意你就輸了）</div>
+        <div class="note-line">* ☆ 能完全忍，太厲害了，要單純點</div>
+        <div class="insight-box" data-insight="這句話是有韻味的，是在提醒有緣人不要硬來，人不是靠忍耐過生活，如果想法多又複雜，百密總有一疏是無法完全防範（累的是自己的心）">
+          <div class="insight-header">
+            <span class="insight-badge">💡 祐維心得</span>
+          </div>
+          <div class="insight-text">這句話是有韻味的，是在提醒有緣人不要硬來，人不是靠忍耐過生活，如果想法多又複雜，百密總有一疏是無法完全防範（累的是自己的心）</div>
+        </div>
+        <div class="note-line">* ☆ 人不要吃醋，要有成人之美，這是仙佛的心，最有福報的人。</div>
+        <div class="insight-box" data-insight="這個弟子很有體悟，自從進入法門並被仙佛協助圓滿因果後，並在學智慧的過程中，發現很多事情會自然的不執著，跟以前的自己差異非常巨大，所以非常感謝師父與仙佛的開示，持續渡化弟子這顆『頑石』。">
+          <div class="insight-header">
+            <span class="insight-badge">💡 祐維心得</span>
+          </div>
+          <div class="insight-text">這個弟子很有體悟，自從進入法門並被仙佛協助圓滿因果後，並在學智慧的過程中，發現很多事情會自然的不執著，跟以前的自己差異非常巨大，所以非常感謝師父與仙佛的開示，持續渡化弟子這顆『頑石』。</div>
+        </div>
+        <div class="note-line">* 不好的，解除他，解除對方的困頓 ↳ 或透過某種方式改變他，功果很大。</div>
+        <div class="note-line">* ☆ 智慧你學到某個程度，不富有也很難</div>
+        <div class="note-line">* ☆ 有方法有智慧，差別在利己、利人、利天 ──► 仙佛</div>
+        <div class="note-line">* 魚籃觀音故事：善意的謊言</div>
+        <div class="insight-box" data-insight="非常感謝魚籃觀音菩薩，因為有這則故事，讓弟子可以知道所謂的智慧，是善意的替對方著想，所以能更靈活的去與人互動，心中有魚籃觀音的精神去渡人，善意的謊言有時可靈活可必要。">
+          <div class="insight-header">
+            <span class="insight-badge">💡 祐維心得</span>
+          </div>
+          <div class="insight-text">非常感謝魚籃觀音菩薩，因為有這則故事，讓弟子可以知道所謂的智慧，是善意的替對方著想，所以能更靈活的去與人互動，心中有魚籃觀音的精神去渡人，善意的謊言有時可靈活可必要。</div>
+        </div>
+        <div class="note-line">* ☆ 不要去破壞跟自己無關的事</div>
+        <div class="note-line">* 抱怨 ⇒ 犯瞋心</div>
+        <div class="note-line">* ① 負面想法（憂鬱症） → 解藥：讚美 ⇒ 產生相信</div>
+        <div class="note-line">* ☆ 你想多了，不是你想的這樣</div>
+        <div class="note-line">* 精神有狀況 ⇒ 被害妄想症</div>
+        <div class="note-line">* ② 前後感受好後（慢慢改善）</div>
+        <div class="note-line">* 讚美 ⇒ 利天</div>
+        <div class="note-line">* ↳ 你這樣講的是對的，（開始告訴他正確思路）</div>
+        <div class="note-line">* ↳ 有信任感後 ⇒ 你要相信我</div>
+        <div class="insight-box" data-insight="針對負面想法的人，除了告訴對方會產生這些結果（給對方觀念）外，重點在提升信任感後，直言告訴對方：”你要相信我“ 是破題有機會成功渡到對方的方法。">
+          <div class="insight-header">
+            <span class="insight-badge">💡 祐維心得</span>
+          </div>
+          <div class="insight-text">針對負面想法的人，除了告訴對方會產生這些結果（給對方觀念）外，重點在提升信任感後，直言告訴對方：”你要相信我“ 是破題有機會成功渡到對方的方法。</div>
+        </div>
+      </div>
+    </section>
+    <section class="page-section" id="page2">
+      <div class="page-title">
+        <span>第二頁</span>
+      </div>
+      <div class="note-content">
+        <div class="note-line">* ☆ 靈界好神可以幫助到有緣人</div>
+        <div class="note-line">* ☆ 把每一天都當最後一天</div>
+        <div class="note-line">* ☆ 渡人時像仙佛一樣（像樣）</div>
+        <div class="note-line">* ☆ 經歷過那麼多法門，學那麼多智慧，你就像從高中升大學一樣</div>
+        <div class="note-line">* 所以你真正需要的是找到最適合你的法門（能真正幫助到你）</div>
+        <div class="note-line">* ↳ 用這樣的方式有成功引渡到弟子</div>
+        <div class="note-line">* 想賺 $ 的：你想不想擁有賺更多錢的機會？</div>
+        <div class="note-line">* ☆ 渡人時，敢展現和一般人不一樣（附加價值）之處 ⇒ 好奇心</div>
+        <div class="note-line">* **渡人五步驟**：</div>
+        <div class="note-line">* ① 勤看筆記</div>
+        <div class="note-line">* ② 練 QA</div>
+        <div class="note-line">* ③ 分享自身改變</div>
+        <div class="note-line">* ④ 分享附加價值（自己會什麼）</div>
+        <div class="note-line">* ⑤ 分享智慧語錄</div>
+        <div class="note-line">* ☆ 幫助有緣人時，初期一定要讓對方化到五路祈福金</div>
+        <div class="note-line">* ↳ 藥引 ⇒ 借力使力（組長、師父）</div>
+        <div class="note-line">* 化金累積福報 ⇒ 貴人才能聽得懂我們講的話，而非解困頓</div>
+        <div class="note-line">* ☆ 提升智慧可以幫助我們選對的人、對的事情，這些智慧都是日積月累</div>
+        <div class="note-line">* ☆ 同門之間是交流，非追隨，不要本末倒置</div>
+        <div class="note-line">* ☆ 突破大腦限制時，會產生負面情緒，要找好幫手、組長提攜</div>
+        <div class="note-line">* 引渡人：邀約、信任</div>
+      </div>
+    </section>
+    <section class="page-section" id="page3">
+      <div class="page-title">
+        <span>第三頁</span>
+      </div>
+      <div class="note-content">
+        <div class="note-line">* 111/11/20　智慧講座（師母,皓竣,伯融）　主講**</div>
+        <div class="note-line">* 天時緊急.家中可設先天 無極 佛堂（最圓滿）,或先天八卦避煞陣,家裡就有仙佛護佑.</div>
+        <div class="note-line">* 弟子家中如無阻礙,應以設先天 無極 佛堂為目標.</div>
+        <div class="note-line">* 有渡到 一位有緣人,即可在家開智慧講座課程.</div>
+        <div class="note-line">* 師父.師母可支援</div>
+        <div class="note-line">* 有緣人：感恩的心,聽話照做,認識法門一定程度（信任）</div>
+        <div class="note-line">* 往後師父不在現場,皆不可坐靈、靈坐，即日起學智慧,把智慧學好.</div>
+        <div class="note-line">* （以上）六心具足,有效率渡人</div>
+        <div class="note-line">* 稟報=信念具足的意思</div>
+        <div class="note-line">* 渡人時要注意的點：</div>
+        <div class="note-line">* ↳ "先培養關係"</div>
+        <div class="note-line">* ①平常關心聊天的好習慣.</div>
+        <div class="note-line">* ②發現困頓時,蒐集資訊給組長,No自己渡/給對方答案.（大家會幫你做功果）</div>
+        <div class="note-line">* 被問倒時,不用回答."這個問題我無法回覆你,我幫你請教組長/心靈導師,暫時No 師父"</div>
+        <div class="note-line">* ③確認有緣人達到一定程度時,（對方很有心）再請示師父</div>
+        <div class="note-line">* 師母：協渡也算功果,不用想自己沒有有緣人</div>
+        <div class="insight-box" data-insight="現在回頭來看以前的筆記，大家都有所成長，其實觀念跟互動師父都曾開示過，只差在我們能夠執行幾分。">
+          <div class="insight-header">
+            <span class="insight-badge">💡 祐維心得</span>
+          </div>
+          <div class="insight-text">現在回頭來看以前的筆記，大家都有所成長，其實觀念跟互動師父都曾開示過，只差在我們能夠執行幾分。</div>
+        </div>
+      </div>
+    </section>
+    <section class="page-section" id="page4">
+      <div class="page-title">
+        <span>第四頁</span>
+      </div>
+      <div class="note-content">
+        <div class="note-line">* 111/11/27 師母/融哥智慧講座.</div>
+        <div class="note-line">* 師父開示：</div>
+        <div class="note-line">* 我們是一個團隊，目標回天的一家人，</div>
+        <div class="note-line">* 渡人不是靠自己，而是要互相請教，</div>
+        <div class="note-line">* 組長及同門師兄姐們成就彼此，累積功果.</div>
+        <div class="note-line">* 師父這邊也能提供更多資源</div>
+        <div class="note-line">* **師母：「助人渡人像呼吸一樣自然」（九年前）**</div>
+        <div class="note-line">* 累積功果，仙佛來會賜天上財，天道酬勤的心態，就是順心如意</div>
+        <div class="note-line">* 財神星君開示，財富分兩種，一種是人間財，一種是功果財</div>
+        <div class="note-line">* ↓人間財↓：</div>
+        <div class="note-line">* 靠自己努力，人定勝天，往往因遇到小人、因果追討，造成一夕損失，又或者是一輩子為人賺錢，因智慧不足，產生無底洞。</div>
+        <div class="note-line">* ↓功果財↓：</div>
+        <div class="note-line">* 必須突破大腦設限，追隨天公老祖的慈悲與智慧，做利己利人利天的事情，在渡人過程中，各位有付出時間/精神，自然上天以功果薪給我們報酬，合情合理，且能累天上功果，功果具足，就可以回歸本位。</div>
+        <div class="note-line">* ↑追隨 師父 無極 天公老祖 先天智慧真道這法門才有的↑</div>
+        <div class="note-line">* 什麼是利己/利人/利天？</div>
+        <div class="note-line">* 利己：渡人得功果，在過程當中還能覺察自己不足的地方，並且提升自己人生，越來越光彩（快樂）.</div>
+        <div class="note-line">* 利人：幫助有緣人真正跳脫困頓，轉變人生,甚至能救他一命</div>
+        <div class="note-line">* 利天：讓與你有緣的仙佛歡喜，仙佛願意乘願來幫忙,有誠心的人</div>
+        <div class="note-line">* 做功果渡人，要很積極，有意義的用自己的崗位、天份做功果，這會讓你越來越有精神。</div>
+        <div class="note-line">* ↳ 人生天道酬勤</div>
+        <div class="insight-box" data-insight="目前重新複習筆記以後，讓弟子持續提升信念：關於在渡人的信念要維持，有付出時間/精神，自然上天會給我們報酬，且可以避開人定勝天的因果陷阱，就像師父曾經講過：人字有兩撇，人定勝天和天道酬勤，要選哪一邊，弟子是一定會選天道酬勤這一邊，中間遇到的阻礙也會一一克服。再次感謝師父 無極 天公老祖 與眾仙佛的開示與提點。">
+          <div class="insight-header">
+            <span class="insight-badge">💡 祐維心得</span>
+          </div>
+          <div class="insight-text">目前重新複習筆記以後，讓弟子持續提升信念：關於在渡人的信念要維持，有付出時間/精神，自然上天會給我們報酬，且可以避開人定勝天的因果陷阱，就像師父曾經講過：人字有兩撇，人定勝天和天道酬勤，要選哪一邊，弟子是一定會選天道酬勤這一邊，中間遇到的阻礙也會一一克服。再次感謝師父 無極 天公老祖 與眾仙佛的開示與提點。</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // 產生並複製帶有方框（隔離效果）的筆記全文
+    function buildFormattedText() {
+      const sections = document.querySelectorAll('.page-section');
+      let fullText = '# 上課筆記智慧講座（精選四頁）\n\n';
+      
+      sections.forEach((sec, idx) => {
+        const title = sec.querySelector('.page-title span').innerText.trim();
+        fullText += '## ' + title + '\n';
+        
+        const children = sec.querySelector('.note-content').children;
+        for (let el of children) {
+          if (el.classList.contains('insight-box')) {
+            const txt = el.getAttribute('data-insight') || el.querySelector('.insight-text').innerText.trim();
+            fullText += '┌──【 祐維心得 】──────────────────────────────────────────────\n';
+            fullText += '│ ' + txt + '\n';
+            fullText += '└──────────────────────────────────────────────────────────────\n';
+          } else if (el.classList.contains('note-line')) {
+            fullText += el.innerText.trim() + '\n';
+          }
+        }
+        
+        if (idx < sections.length - 1) {
+          fullText += '\n---\n\n';
+        }
+      });
+      return fullText;
+    }
+
+    const copyAllBtn = document.getElementById('copyAllBtn');
+    const toast = document.getElementById('toast');
+
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2600);
+    }
+
+    copyAllBtn.addEventListener('click', () => {
+      const formatted = buildFormattedText();
+      navigator.clipboard.writeText(formatted).then(() => {
+        showToast('✅ 全選複製成功！「祐維心得」已套用隔離方框格式！');
+      }).catch(() => {
+        const textarea = document.createElement('textarea');
+        textarea.value = formatted;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        showToast('✅ 全選複製成功！「祐維心得」已套用隔離方框格式！');
+      });
+    });
+
+    // 鍵盤 Cmd+A / Ctrl+A 全選後複製時，亦自動提供方框隔離版本
+    document.addEventListener('copy', (e) => {
+      const selection = window.getSelection().toString();
+      // 若全選或大範圍選取，注入帶有方框格式之文字
+      if (selection.length > 500) {
+        e.preventDefault();
+        const formatted = buildFormattedText();
+        e.clipboardData.setData('text/plain', formatted);
+        showToast('✅ 已複製！「祐維心得」已自動轉換為方框隔離效果！');
+      }
+    });
+
+    // Theme toggle
+    const themeBtn = document.getElementById('themeBtn');
+    let isDark = false;
+    themeBtn.addEventListener('click', () => {
+      isDark = !isDark;
+      if (isDark) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+      }
+    });
+  </script>
+</body>
+</html>
