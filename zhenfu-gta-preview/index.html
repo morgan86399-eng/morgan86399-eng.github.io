@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="description" content="鎮撫街 46 號附近：官方 3D Tiles 與程序化招牌樓預覽。灰盒立面，不是實景街廓。">
+  <meta name="theme-color" content="#f7f3e8">
+  <title>鎮撫街 46 號｜實景 + 程序樓預覽</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cesium@1.124/Build/Cesium/Widgets/widgets.css">
+  <link rel="stylesheet" href="css/preview.css">
+</head>
+<body>
+  <header>
+    <h1>鎮撫街 46 號｜實景 + 程序樓預覽</h1>
+    <p>官方 3D Tiles 呈現附近樓體與道路；程序化招牌樓用 OpenStreetMap 輪廓擠出灰盒立面。不是實景街廓。</p>
+    <div class="button-row">
+      <button id="streetButton" type="button">街道視角</button>
+      <button id="overviewButton" type="button">間距總覽</button>
+      <button id="facadeButton" type="button">招牌近看</button>
+    </div>
+  </header>
+  <main>
+    <div id="cesiumContainer" role="img" aria-label="鎮撫街 46 號附近三維預覽，含官方建物與程序化招牌樓"></div>
+    <aside class="panel">
+      <section>
+        <h2>目前資料</h2>
+        <div class="status" id="status" data-state="loading" role="status" aria-live="polite">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span id="statusText">正在準備地圖…</span>
+        </div>
+        <dl>
+          <dt>原點</dt><dd>鎮撫街 46 號</dd>
+          <dt>範圍</dt><dd>半徑 200 公尺</dd>
+          <dt>座標</dt><dd>24.9979870, 121.3146923</dd>
+          <dt>程序化樓</dt><dd id="procCount">—</dd>
+          <dt>官方建物</dt><dd id="tileState">連線中</dd>
+        </dl>
+        <p id="pickLine" class="notice">點選程序化樓可看類型與高度來源。</p>
+      </section>
+      <section>
+        <h2>顯示模式</h2>
+        <div class="mode-row" role="radiogroup" aria-label="顯示模式">
+          <button type="button" data-mode="tiles" aria-pressed="false">官方 3D Tiles</button>
+          <button type="button" data-mode="proc" aria-pressed="false">程序化招牌樓</button>
+          <button type="button" data-mode="both" aria-pressed="true">兩者</button>
+        </div>
+        <p>兩者同時開啟時，官方樓體會稍微變淡，程序化立面留在前面。輪廓來源不同，兩邊不會完全重合。</p>
+      </section>
+      <section>
+        <h2>畫面操作</h2>
+        <p>拖曳旋轉視角，滾輪或雙指縮放。街道視角對準鎮撫街 46 號，不是把鏡頭放在座標正上方。</p>
+        <button id="ringButton" type="button" aria-pressed="true">顯示／隱藏 200 公尺範圍</button>
+      </section>
+      <section>
+        <h2>立面是怎麼來的</h2>
+        <p>有 OSM 輪廓才蓋樓：店屋、公寓、中層、廟宇、公共。窗格、門帶與招牌色塊是小張程序貼圖重複貼上，沒有真實店名。</p>
+        <ul class="legend">
+          <li><span class="swatch shop" aria-hidden="true"></span>店屋：招牌帶、騎樓窗</li>
+          <li><span class="swatch apt" aria-hidden="true"></span>公寓：窗格與陽台線</li>
+          <li><span class="swatch mid" aria-hidden="true"></span>中層：橫向玻璃帶</li>
+          <li><span class="swatch temple" aria-hidden="true"></span>廟宇：紅柱與深色屋頂</li>
+          <li><span class="swatch civic" aria-hidden="true"></span>公共：淺牆與入口帶</li>
+        </ul>
+      </section>
+      <section>
+        <h2>資料界線</h2>
+        <p>這附近 OpenStreetMap 建物輪廓大約二十多棟。沒被收錄的房屋只出現在官方 3D Tiles，程序不會自己補樓。</p>
+        <p>未標樓層的建物用類型給一個示意高度，不是測量值。樓底固定在橢球高約 89.9 公尺，對齊鄰近官方模型的地面。</p>
+        <p class="notice">官方圖層即時讀取，不下載、不拆解，也不把服務內容做成專案模型。淡綠圓盤只是本地參考地面。</p>
+      </section>
+      <details>
+        <summary>來源與授權說明</summary>
+        <div class="source-list">
+          <a href="https://3dtiles.nlsc.gov.tw/building/tiles3d/37/tileset.json" target="_blank" rel="noopener noreferrer">國土測繪中心｜桃園市分棟版建物模型</a>
+          <a href="https://3dtiles.nlsc.gov.tw/road/tiles3d/7/tileset.json" target="_blank" rel="noopener noreferrer">國土測繪中心｜道路模型</a>
+          <a href="https://www.nlsc.gov.tw/cp.aspx?n=1549" target="_blank" rel="noopener noreferrer">國土測繪中心｜多維度國家空間資訊服務</a>
+          <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors（ODbL）</a>
+          <a href="https://overpass-api.de/api/interpreter" target="_blank" rel="noopener noreferrer">Overpass API｜建物輪廓查詢</a>
+          <a href="https://cesium.com/platform/cesiumjs/" target="_blank" rel="noopener noreferrer">CesiumJS 1.124</a>
+        </div>
+        <p class="notice">正式使用前，請依資料提供方目前公告重新確認使用條件與標示要求。</p>
+      </details>
+    </aside>
+  </main>
+  <footer>實景 + 程序樓預覽｜官方建物、道路與電子地圖：內政部國土測繪中心（串流）｜程序化輪廓：<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors（ODbL）</a></footer>
+  <noscript>此頁需要 JavaScript 與 WebGL 才能顯示三維預覽。</noscript>
+  <script src="js/cesium-config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/cesium@1.124/Build/Cesium/Cesium.js"></script>
+  <script src="js/preview-map.js"></script>
+</body>
+</html>
