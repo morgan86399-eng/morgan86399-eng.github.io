@@ -19,7 +19,7 @@
 | 底圖 | 國土測繪中心電子地圖 WMTS（EMAP） | 不用 OSM 圖磚（避免 403） |
 | 程序化輪廓 | OpenStreetMap，ODbL | `data/buildings.json` 是 2026-09-29 的 Overpass 快照；頁面仍會試著向 Overpass 更新 |
 
-畫面上可切「官方 3D Tiles／程序化招牌樓／兩者」。Cesium 使用 jsDelivr 上的 1.124，並設定 `CESIUM_BASE_URL`。場景持續繪製（`requestRenderMode: false`），避免 3D Tiles 還在載入時整面變黑。
+畫面上可切「官方 3D Tiles／程序化招牌樓／兩者」。Cesium 使用 jsDelivr 上的 1.124，並設定 `CESIUM_BASE_URL`。畫面只在鏡頭移動或圖磚還在進來時重繪（約每秒 20 幀），停下後補一輪全細度再休息，所以不會整面變黑，閒置時也不會一直占著 GPU。建物中心的螢幕誤差仍是 8，道路是 12；螢幕邊緣可以粗一階。繪圖解析度最高 1.5 倍，避免高密度螢幕用 2～3 倍像素硬畫。
 
 ## 本機開啟
 

@@ -74,6 +74,8 @@
   let procPrimitives = [];
   let nameEntities = [];
   let mode = 'both';
+  let kickRender = () => {};
+  let procWaitUntil = 0;
   const facadeCache = new Map();
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -102,11 +104,14 @@
   const overviewView = frameCamera(35, 340, -50, 18);
   let facadeView = frameCamera(48, 36, -18, 6);
 
-  const fly = (view) => viewer.camera.flyTo({
-    destination: view.destination,
-    orientation: view.orientation,
-    duration: reducedMotion ? 0 : 0.85
-  });
+  const fly = (view) => {
+    kickRender(2200);
+    viewer.camera.flyTo({
+      destination: view.destination,
+      orientation: view.orientation,
+      duration: reducedMotion ? 0 : 0.85
+    });
+  };
 
   const hashId = (id) => {
     let h = 2166136261;
@@ -507,7 +512,7 @@
           closed: false
         }),
         asynchronous: true,
-        releaseGeometryInstances: false
+        releaseGeometryInstances: true
       }));
       procPrimitives.push(primitive);
     });
@@ -521,7 +526,7 @@
           closed: false
         }),
         asynchronous: true,
-        releaseGeometryInstances: false
+        releaseGeometryInstances: true
       })));
     }
 
@@ -534,6 +539,8 @@
     renderStatus();
     window.__zhenfuPreview.chunks = wallGroups.size;
     window.__zhenfuPreview.facadeTarget = facadeTarget;
+    procWaitUntil = performance.now() + 8000;
+    kickRender(1200);
   };
 
   const applyMode = (next) => {
@@ -554,6 +561,7 @@
       button.setAttribute('aria-pressed', button.dataset.mode === mode ? 'true' : 'false');
     });
     window.__zhenfuPreview.mode = mode;
+    kickRender(500);
   };
 
   const idsOf = (records) => records.map((r) => r.id).sort((a, b) => a - b).join(',');
@@ -589,14 +597,26 @@
       selectionIndicator: false,
       terrainProvider: new Cesium.EllipsoidTerrainProvider(),
       scene3DOnly: true,
-      requestRenderMode: false
+      orderIndependentTranslucency: false,
+      requestRenderMode: true
     });
+
+    // Draw on demand. A short follow-up pump covers tile arrivals so the first view is not a blank frame.
+    viewer.scene.maximumRenderTimeChange = Number.POSITIVE_INFINITY;
+    viewer.clock.shouldAnimate = false;
+    const dpr = window.devicePixelRatio || 1;
+    const pixelCap = Math.min(dpr, 1.5);
+    viewer.useBrowserRecommendedResolution = false;
+    viewer.resolutionScale = pixelCap / dpr;
+    if (viewer.scene.postProcessStages && viewer.scene.postProcessStages.fxaa) {
+      viewer.scene.postProcessStages.fxaa.enabled = true;
+    }
 
     viewer.imageryLayers.removeAll();
     viewer.imageryLayers.addImageryProvider(new Cesium.UrlTemplateImageryProvider({
       url: 'https://wmts.nlsc.gov.tw/wmts/EMAP/default/GoogleMapsCompatible/{z}/{y}/{x}',
       credit: '© 內政部國土測繪中心',
-      maximumLevel: 20
+      maximumLevel: 18
     }));
 
     viewer.scene.globe.show = true;
@@ -615,7 +635,42 @@
       direction: new Cesium.Cartesian3(0.35, -0.75, -0.55)
     });
     viewer.camera.setView(streetView);
-    viewer.scene.requestRender();
+    viewer.camera.percentageChanged = 0.01;
+
+    let activeUntil = 0;
+    let pumpId = 0;
+    let lastPumpDraw = 0;
+    const proceduralPending = () => performance.now() < procWaitUntil
+      && procPrimitives.some((primitive) => primitive.show && !primitive.ready);
+    const shouldPump = (now) => !document.hidden && (now < activeUntil || proceduralPending());
+    const pump = (now) => {
+      pumpId = 0;
+      const stamp = typeof now === 'number' ? now : performance.now();
+      if (!shouldPump(stamp)) return;
+      if (stamp - lastPumpDraw > 48) {
+        lastPumpDraw = stamp;
+        viewer.scene.requestRender();
+      }
+      pumpId = requestAnimationFrame(pump);
+    };
+    kickRender = (extraMs = 700) => {
+      activeUntil = Math.max(activeUntil, performance.now() + extraMs);
+      viewer.scene.requestRender();
+      if (!pumpId) pumpId = requestAnimationFrame(pump);
+    };
+    viewer.camera.moveStart.addEventListener(() => kickRender(1600));
+    viewer.camera.moveEnd.addEventListener(() => kickRender(1200));
+    viewer.scene.globe.tileLoadProgressEvent.addEventListener(() => {
+      viewer.scene.requestRender();
+    });
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) kickRender(800);
+    });
+    window.addEventListener('resize', () => {
+      viewer.resize();
+      kickRender(300);
+    });
+    kickRender(3200);
 
     groundDisc = viewer.entities.add({
       position: Cesium.Cartesian3.fromDegrees(ORIGIN.longitude, ORIGIN.latitude),
@@ -674,6 +729,7 @@
       rangeEntity.show = show;
       ringLine.show = show;
       document.getElementById('ringButton').setAttribute('aria-pressed', show ? 'true' : 'false');
+      kickRender(200);
     };
     document.querySelectorAll('[data-mode]').forEach((button) => {
       button.onclick = () => applyMode(button.dataset.mode);
@@ -691,20 +747,45 @@
       pickLine.textContent = name + meta.kindLabel + '｜' + heightLabel(meta) + '｜OSM ' + meta.osmId;
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
 
-    window.__zhenfuPreview = { mode, report, viewer };
-
-    const tileOptions = {
-      maximumScreenSpaceError: 8,
-      dynamicScreenSpaceError: true,
-      showCreditsOnScreen: true,
-      cullWithChildrenBounds: true,
-      cullRequestsWhileMoving: false
+    window.__zhenfuPreview = {
+      mode,
+      report,
+      viewer,
     };
-    const roadOptions = {
-      maximumScreenSpaceError: 12,
+
+    const sharedTiles = {
+      // Center of the view stays at maximumScreenSpaceError; the edges may be a step coarser.
       dynamicScreenSpaceError: true,
-      showCreditsOnScreen: true,
-      cullRequestsWhileMoving: false
+      dynamicScreenSpaceErrorFactor: 4,
+      foveatedScreenSpaceError: true,
+      foveatedConeSize: 0.3,
+      foveatedMinimumScreenSpaceErrorRelaxation: 2,
+      foveatedTimeDelay: 0.15,
+      cullWithChildrenBounds: true,
+      cullRequestsWhileMoving: true,
+      cullRequestsWhileMovingMultiplier: 60,
+      progressiveResolutionHeightFraction: 0.35,
+      preloadWhenHidden: false,
+      showCreditsOnScreen: true
+    };
+    const tileOptions = Object.assign({}, sharedTiles, {
+      maximumScreenSpaceError: 8,
+      cacheBytes: 256 * 1024 * 1024,
+      maximumCacheOverflowBytes: 64 * 1024 * 1024
+    });
+    const roadOptions = Object.assign({}, sharedTiles, {
+      maximumScreenSpaceError: 12,
+      cacheBytes: 128 * 1024 * 1024,
+      maximumCacheOverflowBytes: 32 * 1024 * 1024
+    });
+    const watchTileset = (tileset) => {
+      // One frame per arrival. A continuous loop here never goes idle on a county-wide tileset.
+      tileset.loadProgress.addEventListener((pending, processing) => {
+        viewer.scene.requestRender();
+        if (pending + processing === 0) kickRender(600);
+      });
+      tileset.initialTilesLoaded.addEventListener(() => kickRender(700));
+      tileset.allTilesLoaded.addEventListener(() => kickRender(400));
     };
 
     const loadTimeout = setTimeout(() => {
@@ -717,6 +798,7 @@
     Cesium.Cesium3DTileset.fromUrl(TILESET_URL, tileOptions).then((tileset) => {
       buildingTileset = tileset;
       viewer.scene.primitives.add(tileset);
+      watchTileset(tileset);
       clearTimeout(loadTimeout);
       report.tiles = 'ready';
       applyMode(mode);
@@ -731,6 +813,7 @@
     Cesium.Cesium3DTileset.fromUrl(ROAD_TILESET_URL, roadOptions).then((roads) => {
       roadTileset = roads;
       viewer.scene.primitives.add(roads);
+      watchTileset(roads);
       report.roads = 'ready';
       applyMode(mode);
     }).catch((error) => {
