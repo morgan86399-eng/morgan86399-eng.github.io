@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>飾品鋼印怎麼看？30秒看懂黃金・K金・白金・銀</title>
+  <style>
+    :root {
+      --bg: #faf7f1;
+      --card: #ffffff;
+      --ink: #2a2421;
+      --muted: #6c625b;
+      --border: #e8dfd2;
+      --gold: #b88428;
+      --gold-soft: #fcf4e3;
+      --gold-bd: #e3c482;
+      --pt: #36526d;
+      --pt-soft: #edf3f8;
+      --pt-bd: #a8bed2;
+      --ag: #545963;
+      --ag-soft: #f1f3f5;
+      --ag-bd: #c2c7cf;
+      --warn: #a63d2d;
+      --warn-soft: #fdf0ed;
+      --warn-bd: #e3a79d;
+      --shadow: 0 6px 24px rgba(42, 36, 33, 0.06);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 20px 14px 56px;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      line-height: 1.75;
+    }
+
+    .wrap {
+      max-width: 920px;
+      margin: 0 auto;
+    }
+
+    /* Hero */
+    .hero {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-top: 5px solid var(--gold);
+      border-radius: 16px;
+      padding: 24px 24px 20px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+
+    .eyebrow {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 25px;
+      line-height: 1.35;
+    }
+
+    .hero-lead {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 15.5px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--ink);
+      padding: 9px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .btn:hover { border-color: var(--gold); color: var(--gold); }
+
+    .btn-primary {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: #9a6c1d;
+      border-color: #9a6c1d;
+      color: #ffffff;
+    }
+
+    /* Card blocks */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px 24px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      margin: 0 0 6px;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .section-sub {
+      margin: 0 0 16px;
+      font-size: 14.5px;
+      color: var(--muted);
+    }
+
+    /* Interactive stamp lookup */
+    .search-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .search-row input {
+      flex: 1;
+      padding: 11px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      font-size: 15px;
+      color: var(--ink);
+      background: #fcfaf7;
+      outline: none;
+    }
+
+    .search-row input:focus {
+      border-color: var(--gold);
+      background: #ffffff;
+    }
+
+    .pill-pool {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .stamp-btn {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: #f9f6f0;
+      color: var(--ink);
+      padding: 7px 13px;
+      border-radius: 999px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .stamp-btn:hover {
+      border-color: var(--gold);
+      background: var(--gold-soft);
+    }
+
+    .stamp-btn.active {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: #ffffff;
+    }
+
+    .result-box {
+      border: 1.5px solid var(--gold-bd);
+      background: var(--gold-soft);
+      border-radius: 14px;
+      padding: 18px 20px;
+    }
+
+    .result-box.type-pt { border-color: var(--pt-bd); background: var(--pt-soft); }
+    .result-box.type-ag { border-color: var(--ag-bd); background: var(--ag-soft); }
+    .result-box.type-warn { border-color: var(--warn-bd); background: var(--warn-soft); }
+
+    .result-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .result-tag {
+      font-size: 12.5px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.85);
+      color: var(--ink);
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .result-title {
+      font-size: 20px;
+      font-weight: 800;
+      margin: 0;
+    }
+
+    .meter-wrap {
+      margin: 10px 0 12px;
+    }
+
+    .meter-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13.5px;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .meter-track {
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.75);
+      border: 1px solid rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+
+    .meter-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: var(--gold);
+      transition: width 0.3s ease;
+    }
+
+    .type-pt .meter-fill { background: var(--pt); }
+    .type-ag .meter-fill { background: var(--ag); }
+    .type-warn .meter-fill { background: var(--warn); }
+
+    .result-desc {
+      margin: 0 0 8px;
+      font-size: 15px;
+    }
+
+    .result-tip {
+      margin: 0;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    /* Memory rule cards */
+    .rule-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+    }
+
+    .rule-card {
+      background: #fcfaf6;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 18px;
+    }
+
+    .rule-num {
+      display: inline-block;
+      background: var(--ink);
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 2px 9px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+
+    .rule-card h3 {
+      margin: 0 0 8px;
+      font-size: 16.5px;
+    }
+
+    .rule-card p {
+      margin: 0 0 8px;
+      font-size: 14.5px;
+      color: #3d3632;
+    }
+
+    .mini-list {
+      margin: 0;
+      padding-left: 18px;
+      font-size: 14px;
+      color: #3d3632;
+    }
+
+    .mini-list li { margin-bottom: 5px; }
+
+    .mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-weight: 700;
+      background: #f1ece2;
+      padding: 1px 6px;
+      border-radius: 5px;
+      font-size: 13.5px;
+    }
+
+    /* 4 Metal cards */
+    .metal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+    }
+
+    .metal-card {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      background: #ffffff;
+    }
+
+    .metal-card.gold { border-top: 4px solid var(--gold); }
+    .metal-card.karat { border-top: 4px solid #d4a448; }
+    .metal-card.pt { border-top: 4px solid var(--pt); }
+    .metal-card.ag { border-top: 4px solid var(--ag); }
+
+    .metal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 10px;
+    }
+
+    .metal-name {
+      font-size: 18px;
+      font-weight: 800;
+      margin: 0;
+    }
+
+    .metal-letter {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .code-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px dashed var(--border);
+      font-size: 14px;
+      gap: 10px;
+    }
+
+    .code-row:last-child { border-bottom: none; }
+
+    .code-left {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-weight: 700;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+
+    .code-right {
+      color: var(--muted);
+      text-align: right;
+    }
+
+    /* Twins comparison */
+    .twin-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+    }
+
+    .twin-box {
+      border-radius: 12px;
+      padding: 16px 18px;
+      border: 1px solid var(--border);
+      background: #fbfaf7;
+    }
+
+    .twin-box.warn {
+      background: var(--warn-soft);
+      border-color: var(--warn-bd);
+    }
+
+    .twin-box h3 {
+      margin: 0 0 8px;
+      font-size: 16px;
+    }
+
+    .twin-box p {
+      margin: 0 0 8px;
+      font-size: 14.5px;
+    }
+
+    .twin-box p:last-child { margin-bottom: 0; }
+
+    /* Summary cheat sheet */
+    .cheat-box {
+      background: #2a2421;
+      color: #faf7f1;
+      border-radius: 14px;
+      padding: 20px 22px;
+    }
+
+    .cheat-box h2 {
+      margin: 0 0 10px;
+      font-size: 19px;
+      color: #f3d28f;
+    }
+
+    .cheat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+    }
+
+    .cheat-item {
+      background: rgba(255,255,255,0.08);
+      border-radius: 10px;
+      padding: 12px 14px;
+      font-size: 14px;
+    }
+
+    .cheat-item strong {
+      display: block;
+      color: #f5d89a;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(16px);
+      background: var(--ink);
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 14px;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.25s ease;
+      z-index: 99;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media print {
+      body { background: #ffffff; padding: 0; }
+      .hero-actions, .search-row, .pill-pool { display: none !important; }
+      .card, .hero, .cheat-box { box-shadow: none; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <div class="eyebrow">飾品體檢隨身小抄・一分鐘看懂鋼印</div>
+      <h1>金飾、K金、白金、銀飾印記怎麼看？</h1>
+      <p class="hero-lead">拿起手邊的戒指、項鍊扣環或手鍊，不用背艱深術語——只要記住「先認開頭英文字、再看數字移一位小數點」，就能秒懂它是什麼材質、含多少純貴金屬。</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="copyCheatSheet()">一鍵複製好記口訣</button>
+        <button class="btn" onclick="window.print()">列印 / 存成 PDF</button>
+      </div>
+    </header>
+
+    <!-- 互動快查 -->
+    <section class="card">
+      <h2 class="section-title">一、手上飾品寫什麼？點一下直接翻譯</h2>
+      <p class="section-sub">點選下方常見鋼印，或直接輸入你飾品內圈看到的英文字與數字：</p>
+
+      <div class="search-row">
+        <input type="text" id="quickSearch" placeholder="輸入看到的印記，例如：750、Pt900、K18、925、GF" />
+      </div>
+
+      <div class="pill-pool" id="pillPool"></div>
+
+      <div id="resultBox" class="result-box">
+        <div class="result-head">
+          <span class="result-tag" id="resTag">黃金</span>
+          <h3 class="result-title" id="resTitle">9999 / Au9999（萬足純金）</h3>
+        </div>
+        <div class="meter-wrap">
+          <div class="meter-label">
+            <span id="resPureLabel">純貴金屬比例</span>
+            <span id="resPurePct">99.99%</span>
+          </div>
+          <div class="meter-track">
+            <div class="meter-fill" id="resMeter" style="width: 100%;"></div>
+          </div>
+        </div>
+        <p class="result-desc" id="resDesc"></p>
+        <p class="result-tip" id="resTip"></p>
+      </div>
+    </section>
+
+    <!-- 超好記兩大心法 -->
+    <section class="card">
+      <h2 class="section-title">二、這輩子只記這 2 招，九成鋼印都看懂</h2>
+      <p class="section-sub">飾品上的小字其實只有兩部分：「英文字＝誰的家」、「數字＝純度幾分」。</p>
+
+      <div class="rule-grid">
+        <div class="rule-card">
+          <span class="rule-num">第 1 招｜認開頭英文字</span>
+          <h3>先分清它是哪一種金屬</h3>
+          <ul class="mini-list">
+            <li>看到 <span class="mono">Au</span>、<span class="mono">G</span>、<span class="mono">K</span> ＝ <strong>黃金家族</strong>（純金或 K 金）</li>
+            <li>看到 <span class="mono">Pt</span> ＝ <strong>真白金（鉑金）</strong>，天然雪白不變黃</li>
+            <li>看到 <span class="mono">S</span>、<span class="mono">Ag</span> ＝ <strong>純銀</strong>（S 就是 Silver 銀）</li>
+            <li>後面多出 <span class="mono">GP</span> 或 <span class="mono">GF</span> ＝ <strong>只有表皮是金</strong>（電鍍或包金）</li>
+          </ul>
+        </div>
+
+        <div class="rule-card">
+          <span class="rule-num">第 2 招｜數字變百分比</span>
+          <h3>三位數往前推一位就是純度％</h3>
+          <p>國際通用的三位數（千分比），只要<strong>在十位數與個位數中間點個小數點</strong>，就是幾％純度：</p>
+          <ul class="mini-list">
+            <li><span class="mono">999</span> → <strong>99.9%</strong>（純到幾乎滿分）</li>
+            <li><span class="mono">950</span> → <strong>95.0%</strong>（鉑金主流：95% 鉑金）</li>
+            <li><span class="mono">925</span> → <strong>92.5%</strong>（標準純銀：92.5% 銀）</li>
+            <li><span class="mono">750</span> → <strong>75.0%</strong>（就是 <strong>18K 金</strong>）</li>
+            <li><span class="mono">585</span> → <strong>58.5%</strong>（就是 <strong>14K 金</strong>）</li>
+          </ul>
+        </div>
+
+        <div class="rule-card">
+          <span class="rule-num">補充小常識｜K 數怎麼算</span>
+          <h3>把純金切成「24 等分」</h3>
+          <p>歐美和台灣很常講「幾 K」，其實就是把滿分當成 <strong>24 塊蛋糕</strong>：</p>
+          <ul class="mini-list">
+            <li><strong>24K</strong> ＝ 24 塊全純金（100% 純金概念）</li>
+            <li><strong>18K</strong> ＝ 佔 18 塊（18÷24 ＝ <strong>75%</strong> ＝ <span class="mono">750</span>）</li>
+            <li><strong>14K</strong> ＝ 佔 14 塊（14÷24 ＝ <strong>58.5%</strong> ＝ <span class="mono">585</span>）</li>
+            <li><strong>10K</strong> ＝ 佔 10 塊（10÷24 ＝ <strong>41.7%</strong> ＝ <span class="mono">417</span>）</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 四大金屬一眼看懂卡 -->
+    <section class="card">
+      <h2 class="section-title">三、四大類飾品常用號碼對照</h2>
+      <p class="section-sub">為什麼有的寫英文、有的只寫數字？其實它們說的是同一件事，只是各國習慣不同。</p>
+
+      <div class="metal-grid">
+        <div class="metal-card gold">
+          <div class="metal-header">
+            <h3 class="metal-name">1. 黃金（純金）</h3>
+            <span class="metal-letter">代表字母：Au / 足金</span>
+          </div>
+          <div class="code-row">
+            <span class="code-left">9999 / Au9999</span>
+            <span class="code-right">99.99% 純金（四九金）</span>
+          </div>
+          <div class="code-row">
+            <span class="code-left">999 / Au999 / 24K</span>
+            <span class="code-right">99.9% 純金（千足金）</span>
+          </div>
+          <div class="code-row">
+            <span class="code-left">990 / Au990</span>
+            <span class="code-right">99.0% 純金（傳統工藝常見）</span>
+          </div>
+          <div class="code-row">
+            <span class="code-left">916 / 22K</span>
+            <span class="code-right">91.6% 金（東南亞／古法硬金常見）</span>
+          </div>
+        </div>
+
+        <div class="metal-card karat">
+          <div class="metal-header">
+            <h3 class="metal-name">2. K 金（黃金混其他金屬）</h3>
+            <span class="metal-letter">代表字母：K / Au / G</span>
+          </div>
+          <div class="code-row">
+            <span class="code-left">18K / 750 / Au750 / K18</span>
+            <span class="code-right">75% 黃金（高級鑽戒最常用）</span>
+          </div>
+          <div class="code-row">
+            <span class="code-left">14K / 585 / Au585</span>
+            <span class="code-right">58.5% 黃金（耐磨耐戴日常款）</span>
+          </div>
+          <div class="code-row">
+            <span class="code-left">10K / 417 / Au417</span>
+            <span class="code-right">41.7% 黃金（日系輕珠寶常見）</span>
+          </div>
+          <div class="code-row">
+            <span class="code-left">9K / 375 / Au375</span>
+            <span class="code-right">37.5% 黃金（英國與古董飾品常見）</span>
+          </div>
+        </div>
+
+        <div class="metal-card pt">
+          <div class="metal-header">
+            <h3 class="metal-name">3. 白金（正式名稱：鉑金）</h3>
+            <span class="metal-letter">代表字母：Pt / PLAT</span>
+          </div>
+          <div class="code-row">
+            <span class="code-left">Pt999 / Pt990</span>
+            <span class="code-right">99% 以上純鉑金（偏軟、多為素圈）</span>
+          </div>
+          <div class="code-row">
+            <span class="code-left">Pt950</span>
+            <span class="code-right">95% 鉑金（國際鑽戒戒台標準）</span>
+          </div>
+          <div class="code-row">
+            <span class="code-left">Pt900</span>
+            <span class="code-right">90% 鉑金（日本經典婚戒、抓鑽牢）</span>
+          </div>
+          <div class="code-row">
+            <span class="code-left">Pt850</span>
+            <span class="code-right">85% 鉑金（日本項鍊鍊條／扣頭常用）</span>
+          </div>
+        </div>
+
+        <div class="metal-card ag">
+          <div class="metal-header">
+            <h3 class="metal-name">4. 銀飾</h3>
+            <span class="metal-letter">代表字母：S / Ag / Sterling</span>
+          </div>
+          <div class="code-row">
+            <span class="code-left">S999 / Ag999 / 足銀</span>
+            <span class="code-right">99.9% 純銀（軟，常見於手鐲）</span>
+          </div>
+          <div class="code-row">
+            <span class="code-left">S950 / Ag950</span>
+            <span class="code-right">95% 純銀（日系職人手作常見）</span>
+          </div>
+          <div class="code-row">
+            <span class="code-left">S925 / 925 / STERLING</span>
+            <span class="code-right">92.5% 純銀（加入 7.5% 銅增加硬度）</span>
+          </div>
+          <div class="code-row">
+            <span class="code-left">800 / 835</span>
+            <span class="code-right">80%～83.5% 銀（歐洲老件古董銀器）</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 最容易搞混的 4 個陷阱 -->
+    <section class="card">
+      <h2 class="section-title">四、大家最常看錯的 4 個地方</h2>
+      <p class="section-sub">逛銀樓、買精品或整理舊首飾時，只要避開這四個誤會就不會買錯、也不會洗壞飾品。</p>
+
+      <div class="twin-grid">
+        <div class="twin-box">
+          <h3>誤會 1：「白金」跟「白 K 金」是不一樣的東西！</h3>
+          <p>• <strong>真白金（印 <span class="mono">Pt950</span>、<span class="mono">Pt900</span>）</strong>：本身就是銀白色的鉑金，怎麼磨都還是白的，拿起來比較沉。</p>
+          <p>• <strong>白 K 金（印 <span class="mono">18K WG</span>、<span class="mono">750</span>）</strong>：裡面其實是「黃澄澄的 75% 黃金」，只是外面鍍了一層亮白色；戴久磨損會微微變淡黃，拿去重鍍就恢復雪白。</p>
+        </div>
+
+        <div class="twin-box">
+          <h3>誤會 2：看到「750」沒寫 K，跟「18K」一樣嗎？</h3>
+          <p><strong>完全一樣！</strong>只是寫法習慣不同：</p>
+          <p>• 美國與台灣口語愛寫 <strong>18K</strong>（18÷24 ＝ 75%）。</p>
+          <p>• 歐洲精品（如百貨常見一線品牌）習慣直接印千分比 <strong>750</strong> 或 <strong>Au750</strong>。</p>
+          <p>• 若看到 K 寫在前面（例如 <span class="mono">K18</span>、<span class="mono">K10</span>），幾乎都是<strong>日本設計／日本製造</strong>的標示法。</p>
+        </div>
+
+        <div class="twin-box">
+          <h3>誤會 3：只看數字不看英文字，會把銀看成金！</h3>
+          <p>因為千分比大家都在用，<strong>數字一樣，金屬可能完全不同</strong>：</p>
+          <p>• <span class="mono">Au999</span> 是純黃金，但 <span class="mono">S999</span> 是純銀。</p>
+          <p>• <span class="mono">Pt950</span> 是白金（鉑金），但 <span class="mono">Ag950</span> 是高純度銀。</p>
+          <p>所以讀印記時，一定要把<strong>前面的英文字跟後面數字一起看</strong>。</p>
+        </div>
+
+        <div class="twin-box warn">
+          <h3>誤會 4：看到 <span class="mono">18K GP</span> / <span class="mono">14K GF</span> 以為是純 K 金</h3>
+          <p>只要印記尾巴出現 <strong>P</strong> 或 <strong>F</strong>，就不是整件實心貴金屬：</p>
+          <p>• <span class="mono">GP</span> / <span class="mono">GEP</span> ＝ 電鍍金（表面噴鍍超薄一層金）。</p>
+          <p>• <span class="mono">GF</span> / <span class="mono">RGP</span> ＝ 包金（外面包一層較厚的 K 金皮，裡面是銅）。</p>
+          <p>• <span class="mono">VERMEIL 925</span> ＝ 925 純銀外層厚鍍黃金。清潔時不可用力刷或過度拋光，以免磨掉外層。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 顏色縮寫小補充 + 總結口訣 -->
+    <section class="cheat-box">
+      <h2>30 秒記住全場口訣（建議截圖收藏）</h2>
+      <div class="cheat-grid">
+        <div class="cheat-item">
+          <strong>1. 看字母認家門</strong>
+          Au／G／K ＝ 金；Pt ＝ 真白金（鉑金）；S／Ag ＝ 銀；後面帶 GP／GF ＝ 表層鍍金或包金。
+        </div>
+        <div class="cheat-item">
+          <strong>2. 三位數點小數點</strong>
+          999 ＝ 99.9%、950 ＝ 95%、925 ＝ 92.5%、750 ＝ 75%（18K）、585 ＝ 58.5%（14K）。
+        </div>
+        <div class="cheat-item">
+          <strong>3. 顏色字不是材質</strong>
+          YG（黃）、WG（白）、RG/PG（玫瑰粉）只是外觀顏色，記得搭配前面的 750/18K 一起看。
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div id="toast" class="toast">已複製好記口訣</div>
+
+  <script>
+    const stamps = [
+      {
+        code: '9999 / Au9999',
+        tag: '純黃金（萬足金）',
+        type: 'gold',
+        pct: 99.99,
+        title: '9999 / Au9999 ＝ 99.99% 純黃金',
+        desc: '幾乎百分之百都是純黃金，也就是銀樓常說的「四九純金」。顏色最金黃亮眼，保值性最高。',
+        tip: '日常提醒：純度越高質地越軟，戴戒指或手鍊時若不小心勾到容易變形，避免跟硬物碰撞。'
+      },
+      {
+        code: '999 / Au999',
+        tag: '純黃金（千足金）',
+        type: 'gold',
+        pct: 99.9,
+        title: '999 / Au999 / 24K ＝ 99.9% 純黃金',
+        desc: '國際與台灣常見的千足純金標準，含金量高達 99.9%，也就是一般口語說的「足金」或「24K」。',
+        tip: '日常提醒：注意不要只看到 999 就當成黃金，如果前面寫 S999 或 Ag999，那其實是純銀喔！'
+      },
+      {
+        code: '750 / 18K',
+        tag: '18K 金',
+        type: 'gold',
+        pct: 75,
+        title: '750 / Au750 / 18K ＝ 75% 黃金',
+        desc: '四分之三是純黃金，另外四分之一加入其他金屬增加硬度，讓爪子能牢牢抓緊鑽石或寶石，是國際珠寶最主流的材質。',
+        tip: '日常提醒：如果後面寫 18K WG（白K金）或 18K RG（玫瑰金），代表它是 75% 黃金調出來的白色或玫瑰色。'
+      },
+      {
+        code: 'K18',
+        tag: '日系 18K 金',
+        type: 'gold',
+        pct: 75,
+        title: 'K18 ＝ 日本標示法的 18K 金（75% 黃金）',
+        desc: '成分和 18K、750 完全一樣！只是日本品牌習慣把英文字母 K 寫在數字前面（例如 K18、K14、K10）。',
+        tip: '日常提醒：看到 K 在前面的老件或小巧項鍊，很大機會是日本製造或日系品牌珠寶。'
+      },
+      {
+        code: '585 / 14K',
+        tag: '14K 金',
+        type: 'gold',
+        pct: 58.5,
+        title: '585 / Au585 / 14K ＝ 58.5% 黃金',
+        desc: '超過一半是純黃金，硬度比 18K 更高、更耐刮耐磨，歐美日常首飾與韓系輕珠寶非常愛用。',
+        tip: '日常提醒：14 ÷ 24 算出來是 58.33%，國際法規統一用 585 這個數字來表示。'
+      },
+      {
+        code: '417 / 10K',
+        tag: '10K 金',
+        type: 'gold',
+        pct: 41.7,
+        title: '417 / 10K ＝ 41.7% 黃金',
+        desc: '大約四成是純黃金，因為合金比例高、硬度很強，非常適合做極細的手鍊或日常平價輕珠寶。',
+        tip: '日常提醒：黃金含量較少，長期接觸汗水、香水可能會稍微氧化暗沉，定期清潔就會亮起來。'
+      },
+      {
+        code: 'Pt950',
+        tag: '真白金（鉑金）',
+        type: 'pt',
+        pct: 95,
+        title: 'Pt950 ＝ 95% 鉑金（正統真白金）',
+        desc: '這才是珠寶學上真正的「白金」！含有 95% 稀有鉑金，天生就是純淨銀白色，配戴多年也不會褪色或變黃。',
+        tip: '日常提醒：比同體積的 18K 金拿起來更有份量（更沉），是高級婚戒、鑽戒最常見的戒台材質。'
+      },
+      {
+        code: 'Pt900',
+        tag: '真白金（鉑金）',
+        type: 'pt',
+        pct: 90,
+        title: 'Pt900 ＝ 90% 鉑金（日系戒台常見）',
+        desc: '含 90% 鉑金、10% 強化合金，硬度比 Pt950 更高一點，日本傳統訂婚鑽戒和早年戒台特別喜歡用它來鑲鑽。',
+        tip: '日常提醒：一樣是真白金，不會褪色變黃，送保養時若需要改戒圍或拋光都很適合。'
+      },
+      {
+        code: 'Pt850',
+        tag: '真白金（鉑金）',
+        type: 'pt',
+        pct: 85,
+        title: 'Pt850 ＝ 85% 鉑金（項鍊鍊身常見）',
+        desc: '含 85% 鉑金，因為項鍊鍊條和扣頭每天拉扯開關，需要更強韌耐磨的硬度，日本項鍊常打這個印記。',
+        tip: '日常提醒：若在很老的日本古董白金戒上看到「Pm」，那是早年鉑金的舊簡稱，體檢時可請專業人員測成色確認。'
+      },
+      {
+        code: '18K WG',
+        tag: '白 K 金（注意區分！）',
+        type: 'gold',
+        pct: 75,
+        title: '18K WG ＝ 白 K 金（本質是 75% 黃金）',
+        desc: '雖然外觀跟白金一樣是銀白色，但它的本體其實是「75% 黃金＋白色金屬」，表面再電鍍一層雪亮的銠。',
+        tip: '日常提醒：戴久電鍍層磨薄後，戒圈底部可能會微微透出淡黃色，這不是生鏽也不是買到假的，重新電鍍就能恢復雪白！'
+      },
+      {
+        code: 'S925 / 925',
+        tag: '標準純銀',
+        type: 'ag',
+        pct: 92.5,
+        title: 'S925 / Ag925 / STERLING ＝ 92.5% 純銀',
+        desc: '國際公認的標準純銀！因為 100% 純銀太軟容易變形，所以加入 7.5% 的銅讓它變硬，才有辦法做出精細造型。',
+        tip: '日常提醒：銀接觸空氣中的硫或汗水會慢慢變黑（氧化），只要用拭銀布擦拭或專業清洗就會恢復銀亮。'
+      },
+      {
+        code: 'S999 / 足銀',
+        tag: '千足純銀',
+        type: 'ag',
+        pct: 99.9,
+        title: 'S999 / Ag999 / 足銀 ＝ 99.9% 純銀',
+        desc: '幾乎全是純銀，顏色偏溫潤雪白、對皮膚溫和不刺激，最常用在傳統素面手鐲或長輩、小孩佩戴的銀飾。',
+        tip: '日常提醒：質地比 925 銀更軟，戴手鐲調整開口大小時要溫柔，不要一直來回凹折。'
+      },
+      {
+        code: '18K GP',
+        tag: '電鍍金（非實心 K 金）',
+        type: 'warn',
+        pct: 5,
+        title: '18K GP / HGE ＝ 表面電鍍一層金（內部非實心金）',
+        desc: '看到尾巴有 GP（Gold Plated），代表裡面是銅或不鏽鋼等一般金屬，只在最外層電鍍了極薄一層 18K 金顏色。',
+        tip: '清潔注意：千萬不要拿去拋光或用洗金水泡太久，會把外面那層金色洗掉，露出裡面的底色。'
+      },
+      {
+        code: '14K GF',
+        tag: '包金／注金（非實心 K 金）',
+        type: 'warn',
+        pct: 10,
+        title: '14K GF / 1/20 14K GF ＝ 表層包了一層 14K 金皮',
+        desc: 'GF（Gold Filled）常翻譯成「美國包金」或「注金」，是把一片 14K 金皮高壓壓合在銅胎外面。比電鍍厚實耐用，但依然不是整件實心 K 金。',
+        tip: '清潔注意：雖然比普通電鍍不易掉色，但依然禁止過度打磨或用尖銳物刮擦，用溫水與中性洗劑輕輕清潔即可。'
+      },
+      {
+        code: 'VERMEIL 925',
+        tag: '厚鍍金純銀',
+        type: 'warn',
+        pct: 92.5,
+        title: 'VERMEIL ＋ 925 ＝ 裡面是 925 純銀，外面厚鍍黃金',
+        desc: '歐美飾品常見的工藝！胎體本身是貨真價實的 925 純銀，外面再鍍上比較厚的黃金，既有純銀材質又呈現金色外觀。',
+        tip: '清潔注意：絕對不可以用「拭銀布」用力擦，因為拭銀布含有微細研磨劑，會把外面的金色鍍層擦掉！'
+      }
+    ];
+
+    const pool = document.getElementById('pillPool');
+    const quickSearch = document.getElementById('quickSearch');
+    const resBox = document.getElementById('resultBox');
+    const resTag = document.getElementById('resTag');
+    const resTitle = document.getElementById('resTitle');
+    const resPurePct = document.getElementById('resPurePct');
+    const resPureLabel = document.getElementById('resPureLabel');
+    const resMeter = document.getElementById('resMeter');
+    const resDesc = document.getElementById('resDesc');
+    const resTip = document.getElementById('resTip');
+
+    function renderResult(item) {
+      resBox.className = 'result-box' + (item.type !== 'gold' ? ' type-' + item.type : '');
+      resTag.textContent = item.tag;
+      resTitle.textContent = item.title;
+
+      if (item.type === 'warn' && item.code !== 'VERMEIL 925') {
+        resPureLabel.textContent = '貴金屬含量（僅表層覆蓋）';
+        resPurePct.textContent = '僅外層含金，非整件實心';
+        resMeter.style.width = item.pct + '%';
+      } else if (item.code === 'VERMEIL 925') {
+        resPureLabel.textContent = '內部胎體純銀比例';
+        resPurePct.textContent = '92.5% 純銀 ＋ 外層厚鍍金';
+        resMeter.style.width = '92.5%';
+      } else {
+        resPureLabel.textContent = '純貴金屬比例';
+        resPurePct.textContent = item.pct + '%';
+        resMeter.style.width = item.pct + '%';
+      }
+
+      resDesc.textContent = item.desc;
+      resTip.textContent = item.tip;
+    }
+
+    function renderPills(filterText = '') {
+      const q = filterText.trim().toLowerCase();
+      pool.innerHTML = '';
+      const matched = stamps.filter(s =>
+        !q ||
+        s.code.toLowerCase().includes(q) ||
+        s.title.toLowerCase().includes(q) ||
+        s.tag.toLowerCase().includes(q) ||
+        s.desc.toLowerCase().includes(q)
+      );
+
+      if (matched.length === 0) {
+        pool.innerHTML = '<span style="color:#8c7f75;font-size:14px;">沒有完全相符的按鈕，可以試試輸入數字如 750、925、950 或英文字 Pt、GF。</span>';
+        return;
+      }
+
+      matched.forEach((item, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'stamp-btn' + (idx === 0 ? ' active' : '');
+        btn.textContent = item.code;
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.stamp-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          renderResult(item);
+        });
+        pool.appendChild(btn);
+      });
+
+      renderResult(matched[0]);
+    }
+
+    quickSearch.addEventListener('input', (e) => {
+      renderPills(e.target.value);
+    });
+
+    renderPills();
+
+    function copyCheatSheet() {
+      const text = [
+        '【30秒看懂飾品鋼印｜生活口訣卡】',
+        '',
+        '一、先看開頭英文字，認出誰是誰：',
+        '• Au / G / K ＝ 黃金家族（純金或 K 金）',
+        '• Pt ＝ 真白金（鉑金），天然銀白不會變黃',
+        '• S / Ag ＝ 純銀（S = Silver）',
+        '• 尾巴有 GP / GF ＝ 只有表皮是金（GP 電鍍、GF 包金）',
+        '',
+        '二、三位數往前點一個小數點，就是純度％：',
+        '• 999 ＝ 99.9%（幾乎滿分純金／純銀）',
+        '• 950 ＝ 95.0%（鑽戒最愛用的真白金 Pt950）',
+        '• 925 ＝ 92.5%（標準純銀 S925）',
+        '• 750 ＝ 75.0%（18K 金，佔 24 格裡的 18 格）',
+        '• 585 ＝ 58.5%（14K 金，佔 24 格裡的 14 格）',
+        '• 417 ＝ 41.7%（10K 金，日系輕珠寶常見）',
+        '',
+        '三、最容易搞混的兩件事：',
+        '1. 白金 (Pt950) ≠ 白 K 金 (18K WG / 750)：白 K 金裡面其實是 75% 黃金，戴久電鍍磨薄會微泛淡黃，重鍍就會亮白如新。',
+        '2. 看到 K18（K 在前）＝ 日本標示法，跟 18K、750 完全一樣。',
+        '3. 看到 18K GP、14K GF 或 VERMEIL 925，表面只是鍍層或包金，清潔時千萬不能用力刷或拿拭銀布硬擦！'
+      ].join('\n');
+
+      navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById('toast');
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2200);
+      });
+    }
+  </script>
+</body>
+</html>
