@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>11/23 金飾・珠寶體檢與維護課程｜講師全案手冊與演講稿</title>
+  <style>
+    :root {
+      --bg: #f8f5ef;
+      --card: #ffffff;
+      --ink: #26211e;
+      --muted: #685e57;
+      --border: #e6ddd0;
+      --gold: #a97828;
+      --gold-soft: #fbf3e2;
+      --gold-bd: #dfc084;
+      --navy: #2d4459;
+      --navy-soft: #eef3f7;
+      --sage: #38614c;
+      --sage-soft: #edf5f0;
+      --warn: #9b3b2c;
+      --warn-soft: #fdf0ed;
+      --shadow: 0 6px 24px rgba(38, 33, 30, 0.05);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 24px 16px 64px;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      line-height: 1.8;
+    }
+
+    .wrap {
+      max-width: 1020px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-top: 5px solid var(--gold);
+      border-radius: 16px;
+      padding: 26px 28px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+    }
+
+    .eyebrow {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 25px;
+      line-height: 1.35;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .meta strong { color: var(--ink); }
+
+    .hero-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--ink);
+      padding: 9px 16px;
+      border-radius: 10px;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .btn:hover { border-color: var(--gold); color: var(--gold); }
+
+    .btn-primary {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: #8d611c;
+      border-color: #8d611c;
+      color: #ffffff;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    .tab-btn {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--muted);
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .tab-btn:hover { border-color: var(--gold); color: var(--ink); }
+
+    .tab-btn.active {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: #ffffff;
+    }
+
+    .panel { display: none; }
+    .panel.active { display: block; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px 26px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      margin: 0 0 6px;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .section-sub {
+      margin: 0 0 18px;
+      font-size: 14.5px;
+      color: var(--muted);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 14px;
+    }
+
+    .box {
+      background: #fcfaf6;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+
+    .box.gold { background: var(--gold-soft); border-color: var(--gold-bd); }
+    .box.navy { background: var(--navy-soft); border-color: #b7c8d7; }
+    .box.sage { background: var(--sage-soft); border-color: #b4d1c1; }
+    .box.warn { background: var(--warn-soft); border-color: #e2aba2; }
+
+    .box h3 {
+      margin: 0 0 8px;
+      font-size: 16.5px;
+      font-weight: 800;
+    }
+
+    .box p, .box li {
+      font-size: 14.5px;
+      margin: 0 0 8px;
+    }
+
+    .box ul, .box ol {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    /* Timeline */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .tl-item {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: 16px;
+      padding: 18px 20px;
+      background: #fcfaf6;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--gold);
+      border-radius: 12px;
+    }
+
+    .tl-time {
+      font-weight: 800;
+      font-size: 15px;
+      color: var(--gold);
+    }
+
+    .tl-dur {
+      display: inline-block;
+      margin-top: 4px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--muted);
+      background: #efe8dc;
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+
+    .tl-body h3 {
+      margin: 0 0 6px;
+      font-size: 16.5px;
+    }
+
+    .tl-body p {
+      margin: 0 0 6px;
+      font-size: 14.5px;
+      color: #3a3430;
+    }
+
+    .tl-tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 2px 9px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      margin-right: 6px;
+    }
+
+    /* Script blocks */
+    .script-block {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 24px;
+      background: #ffffff;
+      margin-bottom: 18px;
+    }
+
+    .script-head {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .script-title {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .script-meta {
+      font-size: 13px;
+      color: var(--gold);
+      font-weight: 700;
+      margin-top: 2px;
+    }
+
+    .script-goal {
+      background: #faf6ee;
+      border-left: 3px solid var(--gold);
+      padding: 10px 14px;
+      border-radius: 0 8px 8px 0;
+      font-size: 13.5px;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .speech-text {
+      font-size: 16.5px;
+      line-height: 1.95;
+      color: var(--ink);
+    }
+
+    .speech-text p {
+      margin: 0 0 15px;
+    }
+
+    .speech-text p:last-child { margin-bottom: 0; }
+
+    .btn-sm {
+      appearance: none;
+      border: 1px solid var(--gold-bd);
+      background: var(--gold-soft);
+      color: #7c5414;
+      padding: 6px 13px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn-sm:hover {
+      background: var(--gold);
+      color: #ffffff;
+      border-color: var(--gold);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th {
+      text-align: left;
+      background: #f4efe6;
+      padding: 10px 12px;
+      border-bottom: 2px solid var(--border);
+    }
+
+    td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    .link-pill {
+      color: var(--navy);
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(16px);
+      background: var(--ink);
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 14px;
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.25s ease;
+      z-index: 99;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media (max-width: 680px) {
+      .tl-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+    }
+
+    @media print {
+      body { background: #ffffff; padding: 0; }
+      .tabs, .hero-actions, .btn-sm { display: none !important; }
+      .panel { display: block !important; }
+      .card, .hero, .script-block, .tl-item { box-shadow: none; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <div>
+        <div class="eyebrow">活動統籌與講師逐字腳本全案</div>
+        <h1>11/23（一）金飾・珠寶體檢與維護課程</h1>
+        <div class="meta">
+          <span><strong>日期時間：</strong>11 月 23 日（一）14:00 ～ 16:00（共 120 分鐘）</span>
+          <span><strong>攜帶規範：</strong>每位來賓攜帶 1 ～ 2 樣個人飾品</span>
+          <span><strong>五大主軸：</strong>黃金整理、珠寶清潔、手串、項鍊當場修改、戒台／珠寶設計建議</span>
+        </div>
+      </div>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="copyAllScripts()">一鍵複製全場演講稿</button>
+        <button class="btn" onclick="window.print()">列印 / 另存 PDF</button>
+      </div>
+    </header>
+
+    <div class="tabs" role="tablist">
+      <button class="tab-btn active" data-tab="market">1. 市場對標與講課策略</button>
+      <button class="tab-btn" data-tab="skeleton">2. 兩小時課程骨架與動線</button>
+      <button class="tab-btn" data-tab="scripts">3. 全場分段逐字演講稿</button>
+      <button class="tab-btn" data-tab="ops">4. 現場籌備與風險控管表</button>
+    </div>
+
+    <!-- Tab 1: 市場對標與講課分析 -->
+    <div id="market" class="panel active">
+      <section class="card">
+        <h2 class="section-title">一、台灣與國際市場都怎麼上這類課程？</h2>
+        <p class="section-sub">綜合台灣珠寶鑑定中心、品牌 VIP 沙龍、銀行貴賓理財日及金工工作室常見模式，這類活動最成功的包裝不是「推銷會」，而是「Jewelry Spa（飾品美容健檢日）」。</p>
+
+        <div class="grid-2">
+          <div class="box navy">
+            <h3>市場成熟做法（可以模仿的三大精華）</h3>
+            <ul>
+              <li><strong>限件數造冊制度</strong>：業界標準都限制每位貴賓帶 <strong>1～3 件</strong>（本場設定 1～2 樣非常精準），報到時先放上絨布托盤並做簡易登記，兼具尊榮感與責任釐清。</li>
+              <li><strong>前 25 分鐘「反直覺保養小學堂」</strong>：不講枯燥礦物學，專講大家日常最常踩的雷（例如：溫泉、香水、為什麼珍珠與翡翠不能丢超音波清洗）。</li>
+              <li><strong>「邊照顧舊物、邊引出新需求」</strong>：先讓賓客親眼看到舊金飾與珠寶洗亮、修好後的驚喜（Before / After），信任感建立後，再自然帶出戒台翻新與珠寶設計諮詢。</li>
+            </ul>
+          </div>
+
+          <div class="box gold">
+            <h3>本場最關鍵的營運挑戰與解法</h3>
+            <p>這次同時有<strong>團體動手玩（黃金整理、清潔、手串）</strong>，又有<strong>高耗時一對一服務（項鍊當場修改、戒台設計建議）</strong>。</p>
+            <ul>
+              <li><strong>最大風險</strong>：若採「排隊等講師一個一個看」，第 4 位以後的客人會乾等 40 分鐘而冷場。</li>
+              <li><strong>最佳解法（雙軌分流）</strong>：前半場全員一起聽講＋動手做「安全清潔與手串檢視」；後半場讓大家繼續做手串或擦拭整理，同時講師／師傅在工作台依號碼叫號處理「項鍊快修」與「戒台設計評估」。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="section-title">二、講師現場「應該怎麼講」的四大心法</h2>
+        <div class="grid-2">
+          <div class="box">
+            <h3>1. 用「人體健康檢查」做比喻，聽眾一秒就懂</h3>
+            <p>不要講過多專業詞，把技術翻譯成生活畫面：</p>
+            <ul>
+              <li>看鋼印 ＝「看飾品的身分證」</li>
+              <li>用放大鏡檢查戒爪 ＝「幫戒指檢查牙齒有沒有鬆動」</li>
+              <li>溫水洗潔 ＝「幫首飾卸妝洗澡」</li>
+              <li>舊戒台改款 ＝「把紀念布料重新剪裁成每天穿得出門的新大衣」</li>
+            </ul>
+          </div>
+
+          <div class="box">
+            <h3>2. 先立下「材質安全紅線」，再讓大家動手</h3>
+            <p>賓客最常犯錯就是拿拭銀布擦 K 金／鍍金，或把珍珠、珊瑚、翡翠丟進洗飾機。<strong>動手前先花 3 分鐘喊停「四種不能碰藥水與震動的寶貝」</strong>，既顯專業又能防止現場意外。</p>
+          </div>
+
+          <div class="box">
+            <h3>3. 把「項鍊修改」與「戒台建議」分級處理</h3>
+            <p>現場一定要先說清楚界線，時間才不會爆掉：</p>
+            <ul>
+              <li><strong>當場可完成（3～8 分鐘/件）</strong>：解打結、換扣頭、加延長鍊、手串換彈力線、安全清洗。</li>
+              <li><strong>需帶回工坊（現場只做評估）</strong>：熔金重鑄、改戒圍焊補、大型寶石重新打版鑲嵌 → 現場畫出概念與報價區間，約好下次深度溝通時間。</li>
+            </ul>
+          </div>
+
+          <div class="box">
+            <h3>4. 善用「手機掃碼小工具」強化專業記憶點</h3>
+            <p>講到認識自己飾品的鋼印（`750`、`Pt950`、`925`、`GP/GF`）時，可以讓現場來賓直接用手機掃 QR Code 開啟整理好的生活圖解頁面（例如 <a class="link-pill" href="https://morgan86399-eng.github.io/jewelry-guide/" target="_blank">飾品鋼印速查網頁</a>），回家也能繼續查，對品牌好感度極高。</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Tab 2: 兩小時課程骨架與動線 -->
+    <div id="skeleton" class="panel">
+      <section class="card">
+        <h2 class="section-title">14:00 ～ 16:00 兩小時黃金骨架（120 分鐘時間軸）</h2>
+        <p class="section-sub">節奏設計為「先收攏注意力 → 再集體動手 → 再雙軌分流服務 → 最後對比收尾」，確保每位來賓手上有事做、不乾等、且準時結束。</p>
+
+        <div class="timeline">
+          <div class="tl-item">
+            <div>
+              <div class="tl-time">13:50 ～ 14:00</div>
+              <span class="tl-dur">暖場 10 分鐘</span>
+            </div>
+            <div class="tl-body">
+              <h3>第 0 幕｜報到領托盤 ＆ 飾品健檢登記</h3>
+              <p>發給每人一個絨布托盤＋號碼牌，請來賓把帶來的 1～2 樣飾品放上盤子，順手勾選今日需求（清潔／手串／項鍊修改／戒台設計建議）。工作人員快速拍照留存「體檢前紀錄」。</p>
+              <span class="tl-tag">防紛爭</span><span class="tl-tag">先分流統計需求</span>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div>
+              <div class="tl-time">14:00 ～ 14:10</div>
+              <span class="tl-dur">10 分鐘</span>
+            </div>
+            <div class="tl-body">
+              <h3>第 1 幕｜演講前言與破冰：為飾品安排一場午後體檢</h3>
+              <p>歡迎詞、點出抽屜首飾的共同煩惱（霧掉、打結、線鬆、舊戒台沒戴），清楚預告今天下午五大環節與現場分工規則。</p>
+              <span class="tl-tag">建立親切感</span><span class="tl-tag">定調規則</span>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div>
+              <div class="tl-time">14:10 ～ 14:30</div>
+              <span class="tl-dur">20 分鐘</span>
+            </div>
+            <div class="tl-body">
+              <h3>第 2 幕｜主題微講座：認清材質鋼印 ＋ 保養四大雷區</h3>
+              <p>帶大家拿放大鏡找自己飾品上的數字英文（黃金 `999/9999`、K金 `750/18K`、真白金 `Pt` 與白K金 `WG` 差異、銀 `925`、包鍍金 `GP/GF`），並講清楚哪些珠寶絕對不能碰洗劑與超音波。</p>
+              <span class="tl-tag">掃碼速查</span><span class="tl-tag">安全教育</span>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div>
+              <div class="tl-time">14:30 ～ 15:00</div>
+              <span class="tl-dur">30 分鐘</span>
+            </div>
+            <div class="tl-body">
+              <h3>第 3 幕｜集體實作：黃金整理 ＆ 安全珠寶清潔教學</h3>
+              <p>講師現場示範「黃金軟性整理、家用溫水＋中性洗劑清潔三步驟、戒爪鬆動檢查法」；接著引導大家分批將適合清洗的金飾與耐震珠寶送進清潔區／自己動手刷洗擦乾，當場見證變亮瞬間。</p>
+              <span class="tl-tag">全場高潮</span><span class="tl-tag">立即看得到效果</span>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div>
+              <div class="tl-time">15:00 ～ 15:45</div>
+              <span class="tl-dur">45 分鐘</span>
+            </div>
+            <div class="tl-body">
+              <h3>第 4 幕｜雙軌平行：手串整理 ＋ 項鍊當場修改 ＆ 戒台設計建議</h3>
+              <p><strong>A 軌（座位實作區）</strong>：示範手串如何看線材老化（起毛、變硬、彈力疲乏），讓想玩手串的人學習重新串珠、加隔片或收線結。<br>
+              <strong>B 軌（體檢修改台）</strong>：依報到托盤號碼叫號，一對一處理<strong>項鍊當場修改</strong>（換扣頭、調長度、解死結）及<strong>戒台／珠寶設計諮詢</strong>（看寶石狀態、提供改款配戴建議、登記後續設計預約）。</p>
+              <span class="tl-tag">雙軌不塞車</span><span class="tl-tag">一對一深度服務</span>
+            </div>
+          </div>
+
+          <div class="tl-item">
+            <div>
+              <div class="tl-time">15:45 ～ 16:00</div>
+              <span class="tl-dur">15 分鐘</span>
+            </div>
+            <div class="tl-body">
+              <h3>第 5 幕｜閃亮驗收、收納小秘訣 ＆ 溫暖結尾</h3>
+              <p>邀請大家對比整理前後的亮度並拍照留念；總結「一物一格夾鏈袋收納法」，發放小拭布／收納袋，並提醒需要進階改款或訂製的賓客留下預約時段，圓滿送客。</p>
+              <span class="tl-tag">Before/After 拍照</span><span class="tl-tag">延伸預約</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Tab 3: 全場分段逐字演講稿 -->
+    <div id="scripts" class="panel">
+      <!-- Part 1 -->
+      <article class="script-block">
+        <div class="script-head">
+          <div>
+            <h2 class="script-title">第一段｜開場前言（14:00 ～ 14:10）</h2>
+            <div class="script-meta">目的：破冰共鳴、交代今天五大內容、定下「1～2 樣飾品＋分流規則」</div>
+          </div>
+          <button class="btn-sm" onclick="copySection('sec1')">複製本段</button>
+        </div>
+        <div class="script-goal">講師站位：站在前面手持麥克風，桌面預先放好一個示範用絨布托盤與放大鏡。</div>
+        <div id="sec1" class="speech-text">
+          <p>各位貴賓朋友大家午安！非常開心在這個星期一的下午，和大家相約在這裡，一起度過這段從下午兩點到四點的輕鬆時光。</p>
+          <p>在正式開始之前，想先問問大家：家裡的首飾盒或抽屜深處，是不是都躺著幾件很珍惜的飾品？可能是陪了自己很多年的黃金項鍊與手鍊、平常愛戴卻越戴越霧的珠寶戒指、線頭有點鬆的手串，或是收起來好一陣子、一直想著「改天再拿去改款」的舊戒台。</p>
+          <p>飾品跟人一樣，陪我們走過很多日常和重要場合，戴久了難免會卡一點灰塵失去亮度、扣環或鍊長需要微調，甚至有些款式只是因為舊了點，其實只要換個戒台或配個小配件，就能重新戴出門。</p>
+          <p>所以今天這堂「金飾、珠寶體檢與維護課程」，我們把它設計成一場輕鬆的「飾品午後沙龍」。接下來兩個小時，我們會一起做五件事：第一，認識手上的材質與黃金整理；第二，學正確安全的珠寶清潔方法，現場把飾品洗亮；第三，檢視和整理手串；第四，項鍊有需要微調修改的，今天現場直接幫大家看；第五，如果您帶了戒台過來，或有珠寶設計、舊件改款想聽建議，等一下我們也有一對一的諮詢時間。</p>
+          <p>待會大家帶來的一到兩樣飾品，就先安穩放在您面前的托盤裡。如果有需要現場修改項鍊或看戒台設計的朋友，我們在後半場會按照托盤號碼輪流為大家服務，讓每個人都能從容動手，也不會乾等。那我們就先從認識手上這幾件寶貝的「身分證」開始吧！</p>
+        </div>
+      </article>
+
+      <!-- Part 2 -->
+      <article class="script-block">
+        <div class="script-head">
+          <div>
+            <h2 class="script-title">第二段｜認識鋼印與四大清潔禁忌（14:10 ～ 14:30）</h2>
+            <div class="script-meta">目的：教會賓客看手上飾品的英文字與數字，並建立「不能亂洗」的安全意識</div>
+          </div>
+          <button class="btn-sm" onclick="copySection('sec2')">複製本段</button>
+        </div>
+        <div class="script-goal">互動道具：發 10 倍放大鏡（或請大家用手機相機放大拍扣頭內圈），可搭配投影片或現場 QR Code 展示鋼印圖解網頁。</div>
+        <div id="sec2" class="speech-text">
+          <p>大家現在可以拿起您面前托盤裡的飾品，找找看戒指內圈、或項鍊扣環上那一排小小短短的字，那是飾品的「身分證」。看不清楚沒關係，可以用桌上的放大鏡，或是打開手機相機放大來看。</p>
+          <p>很多人看到裡面的英文數字會霧煞煞，其實只要記住兩句話就會了：第一句，「看開頭英文字，認出誰是誰」——看到 Au、G 或 K，代表黃金家族；看到 Pt，才是真正的白金，也就是鉑金，天然銀白不會變黃；看到 S 或 Ag，就是純銀。如果後面多了一個 P 或 F，像是 18K GP、14K GF，那代表它是電鍍或包金，只有外面那一層皮是金，裡面是其他金屬。</p>
+          <p>第二句更簡單，「三位數字往前點一個小數點，就是純度百分比」——像 999 就是 99.9% 純金或純銀；750 就是 75% 黃金，也就是我們說的 18K 金；585 就是 58.5% 的 14K 金；925 就是 92.5% 標準純銀。順帶一提，很多人把 18K 白 K 金跟真白金搞混，其實白 K 金裡面有 75% 是黃金，戴久外層磨薄會微微透出淡黃色，這不是壞掉，重新電鍍就會跟新的一樣白！</p>
+          <p>認識材質之後，在等一下動手清潔前，我一定要先幫大家畫三條「安全紅線」，這比會洗更重要：第一，珍珠、珊瑚、琥珀、綠松石這類有機或有氣孔的寶石，以及翡翠、祖母綠，千萬不能丟進超音波清洗機，也不能泡洗劑，用微濕軟布輕輕擦拭就好；第二，黃金跟 24K 純金質地很軟，不要跟其他首飾混在一起大力搓洗；第三，如果您的飾品是 18K GP 電鍍或 925 鍍金，千萬不能拿拭銀布用力猛擦，拭銀布上面有細微研磨粉，越擦鍍層會越快掉色喔！</p>
+        </div>
+      </article>
+
+      <!-- Part 3 -->
+      <article class="script-block">
+        <div class="script-head">
+          <div>
+            <h2 class="script-title">第三段｜黃金整理與珠寶安全清潔實作（14:30 ～ 15:00）</h2>
+            <div class="script-meta">目的：示範黃金整理、戒爪體檢與在家就能做的溫和清洗三步驟</div>
+          </div>
+          <button class="btn-sm" onclick="copySection('sec3')">複製本段</button>
+        </div>
+        <div class="script-goal">現場道具：溫水碗、中性洗碗精（無研磨顆粒）、超軟毛兒童牙刷、超細纖維拭布、桌上型超音波清洗機（由工作人員協助操作）。</div>
+        <div id="sec3" class="speech-text">
+          <p>了解安全紅線之後，我們現在來做今天的第一個重頭戲——「黃金整理與珠寶美容清潔」。</p>
+          <p>先講黃金怎麼整理。很多長輩或朋友的黃金項鍊、手鍊放在抽屜久了，看起來暗暗的、甚至不小心壓扁或勾到髮絲。黃金本身不會生鏽，它變暗通常是因為沾到了皮膚油脂、乳液、或是空氣中的微塵。其實在家保養黃金不需要買刺激性藥水，只要準備一碗微溫的清水，滴一兩滴平常洗碗用的中性清潔劑，泡個五到十分鐘，再用超軟毛的牙刷順著鍊節縫隙輕輕刷一刷，最後用清水沖乾淨、拿柔軟的紙巾或拭布「輕輕按乾」——記住，是用按的，不要用力拉扯細鍊，黃金很軟，一拉就容易變長或變形。</p>
+          <p>如果是鑽石、紅藍寶石配 18K 金或鉑金戒台，最常遇到的問題是「看起來霧霧的，好像沒以前閃」。這通常只是寶石底部的油脂和護手霜堵住了光線！在清洗前，大家先幫戒指做個體檢：拿起放大鏡看看抓著寶石的「爪子」有沒有歪斜，或者用手指輕輕碰一下主石，看會不會晃動、戴衣服會不會一直勾到毛衣。確認寶石穩固不鬆動之後，就可以跟著我們剛剛教的溫水三步驟刷洗，尤其是寶石背面的洞口要多刷兩下，待會擦乾您會嚇一跳，亮度馬上回來一大半！</p>
+          <p>現在現場桌上都有準備溫水、中性洗劑和軟毛刷，我們工作台旁邊也有專業的超音波清洗機。接下來二十分鐘，請大家把手邊確認可以水洗的金飾或耐震珠寶拿出來一起試試看；如果不確定能不能下水、或是有鑲嵌的款式，舉個手，我先幫您檢查一眼再洗！</p>
+        </div>
+      </article>
+
+      <!-- Part 4 -->
+      <article class="script-block">
+        <div class="script-head">
+          <div>
+            <h2 class="script-title">第四段｜雙軌平行：手串整理 ＋ 項鍊修改與戒台建議（15:00 ～ 15:45）</h2>
+            <div class="script-meta">目的：自然過渡到「手串實作」＋「輪流叫號進行項鍊修改與戒台設計建議」</div>
+          </div>
+          <button class="btn-sm" onclick="copySection('sec4')">複製本段</button>
+        </div>
+        <div class="script-goal">營運關鍵：請學員在座位檢視/整理手串，同時講師與金工人員在諮詢台依托盤號碼輪流接見需要改項鍊與看戒台的來賓。</div>
+        <div id="sec4" class="speech-text">
+          <p>哇，剛剛看到好幾位朋友的戒指跟金飾洗完馬上亮起來了，是不是很像換了一件新的？</p>
+          <p>接下來我們進入下半場的四十五分鐘，也是大家最期待的「實務整理與一對一改造時間」。為了讓每個人都不會乾等，我們接下來的動線會分成兩邊同時進行：</p>
+          <p>第一邊在大家的座位區，我們來看看「手串」的體檢與整理。手串最怕兩件事：一個是每天拉扯戴脫，彈力線其實已經起毛、變鬆或快斷了卻沒發現，哪天在路上突然斷掉珠子滾滿地最心痛；另一個是中間的銀飾或金飾隔片氧化暗沉。等一下桌上會發下備用彈力線與引線針，有帶手串的朋友，我們先帶大家檢查珠孔有沒有磨損、線頭還緊不緊，想順便換一條新線或練習打隱藏結的，可以在座位上慢慢動手玩，我跟小幫手會巡桌協助大家。</p>
+          <p>同一時間，在右前方的工作諮詢區，我會依照大家報到時的托盤號碼輪流叫號，一對一幫大家處理兩件事：第一是「項鍊當場修改」，像是鍊子打死結解不開、扣頭太小不好扣想換龍蝦扣或磁吸扣、或是長度差一點想微調，只要現場工具能直接解決的，我們當場幫您處理到好；第二是「戒台與珠寶設計建議」，如果您帶了舊戒台、單顆寶石，或覺得某件飾品戴起來太老氣、不知道怎麼跟現有首飾疊戴，都可以拿到諮詢台，我們一起看寶石狀況、討論怎麼改鑲或搭配最實戴、最襯氣質。</p>
+          <p>那我們現在先請一號和二號托盤的貴賓到工作區，其他朋友請先在座位上幫您的手串做個鬆緊體檢吧！</p>
+        </div>
+      </article>
+
+      <!-- Part 5 -->
+      <article class="script-block">
+        <div class="script-head">
+          <div>
+            <h2 class="script-title">第五段｜成果驗收與溫馨結尾（15:45 ～ 16:00）</h2>
+            <div class="script-meta">目的：創造「前後對比」成就感、交代居家收納法、自然留下後續改款與保養聯絡管道</div>
+          </div>
+          <button class="btn-sm" onclick="copySection('sec5')">複製本段</button>
+        </div>
+        <div class="script-goal">收尾小禮：每人發一塊小擦拭布與獨立夾鏈密封袋，提醒拍 Before / After 照片做紀念。</div>
+        <div id="sec5" class="speech-text">
+          <p>時間過得好快，一下就來到下午三點四十五分了。大家現在可以低頭看看自己面前的絨布托盤——是不是跟剛進門時兩點鐘拍的照片差很多？洗亮的珠寶、換好新線的手串、還有改順長度的項鍊，看起來都重新有了精神。</p>
+          <p>最後離開前，我想送給大家一個「五秒鐘收納習慣」：回家脫下飾品後，千萬不要全部一起丟進同一個大盤子裡互相摩擦刮傷，特別是軟的黃金跟硬的鑽石放在一起，鑽石一下就會把黃金刮花。最好的方法，就是今天我們發給大家的小夾鏈袋，用乾布輕輕擦過表面汗水後，一件裝一袋、把空氣擠出來封好，既防刮又大幅減緩銀飾和 K 金氧化，下次要戴出門時隨時都是亮的。</p>
+          <p>今天如果是需要比較多時間打版、重做戒台或深度改款設計的朋友，剛才我們已經在您的健檢單上做過初步紀錄，結束後可以直接跟工作人員預約一對一的專屬時間，我們再慢慢挑款式、看設計圖。</p>
+          <p>非常謝謝大家今天星期一午後撥冗來到這裡，陪自己心愛的飾品做了一場健康檢查。祝大家帶著閃閃發亮的寶貝開心回家，我們下次見！</p>
+        </div>
+      </article>
+    </div>
+
+    <!-- Tab 4: 現場籌備與風險控管 -->
+    <div id="ops" class="panel">
+      <section class="card">
+        <h2 class="section-title">一、現場硬體與器材準備清單</h2>
+        <div class="grid-3">
+          <div class="box">
+            <h3>報到與體檢區</h3>
+            <ul>
+              <li>一人一個絨布托盤＋號碼牌（限制 1～2 樣）</li>
+              <li>簡易健檢登記單（勾選需求＋預先確認有無既有裂痕／鬆動）</li>
+              <li>10 倍放大鏡數個、測鑽筆／電子秤（視現場需求）</li>
+              <li>QR Code 桌牌（可放鋼印速查網址方便來賓掃碼）</li>
+            </ul>
+          </div>
+          <div class="box">
+            <h3>清潔與黃金整理區</h3>
+            <ul>
+              <li>溫水碗、無顆粒中性洗潔精</li>
+              <li>超軟毛刷、高吸水無絨擦拭布、吹風機（冷/微溫風）</li>
+              <li>小型超音波清洗機（專人把關，禁放有機與多孔寶石）</li>
+              <li>夾鏈密封小袋、獨立拭銀／拭金小布（當伴手禮）</li>
+            </ul>
+          </div>
+          <div class="box">
+            <h3>手串與項鍊修改工作台</h3>
+            <ul>
+              <li>手串用：多尺寸日本彈力線（0.8mm/1.0mm）、引線鋼針、小剪刀、串珠盤</li>
+              <li>項鍊快修：尖嘴鉗、圓嘴鉗、常用尺寸 C 圈、龍蝦扣／彈簧扣／延長鍊</li>
+              <li>設計諮詢：戒圍圈、常見經典戒台樣品或改款作品集圖卡</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2 class="section-title">二、現場常見突發狀況與標準應對話術</h2>
+        <div style="overflow-x:auto;">
+          <table>
+            <thead>
+              <tr>
+                <th>現場狀況</th>
+                <th>處理原則</th>
+                <th>推薦應對話術</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>來賓帶了 4～5 件以上</strong></td>
+                <td>堅守 1～2 件優先，其餘排在活動結束後或另約時間，避免拖累全場。</td>
+                <td>「為了確保每位貴賓的寶貝都能被細心檢查，我們先挑您最想處理的 1 到 2 樣放進今天的流程，另外幾樣如果時間允許，我們最後再幫您快速看看或幫您預約專屬健檢時段！」</td>
+              </tr>
+              <tr>
+                <td><strong>戒爪明顯快斷或寶石已鬆動</strong></td>
+                <td><strong>嚴禁丟超音波！</strong>先拍照告知風險，僅做外觀輕擦並建議留件維修。</td>
+                <td>「您看放大鏡這裡，這根爪子已經有點磨平歪斜了，如果今天直接進震動清洗怕寶石會掉出來。我們今天先幫您溫和把表面擦亮，這件我建議先暫停配戴，找師傅把爪子補好再戴最安心。」</td>
+              </tr>
+              <tr>
+                <td><strong>來賓帶到鍍金/包金（GP/GF）或假金</strong></td>
+                <td>照顧對方心情，不當眾拆穿難堪，私下溫柔說明保養方式即可。</td>
+                <td>「這件表面有漂亮的金色鍍層工藝，這種材質最怕用力磨跟強洗劑，今天我們幫您用清水輕擦保養就好，不要拿去泡洗金水喔！」</td>
+              </tr>
+              <tr>
+                <td><strong>戒台大改款諮詢聊太久（超過 10 分鐘）</strong></td>
+                <td>先給明確方向（主石適合什麼風格、預算大致落點），立刻轉預約收單。</td>
+                <td>「這顆主石的火光很棒，改成經典包鑲或雙圈都會非常實戴！因為這部分需要幫您量精準戒圍跟配石比例，我先把您的想法記在健檢單上，結束前我們約個完整時段一對一幫您畫圖看樣品。」</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <div id="toast" class="toast">已複製演講稿內容</div>
+
+  <script>
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const panels = document.querySelectorAll('.panel');
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-tab');
+        tabBtns.forEach(b => b.classList.remove('active'));
+        panels.forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(target).classList.add('active');
+      });
+    });
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+
+    function copySection(id) {
+      const el = document.getElementById(id);
+      const text = Array.from(el.querySelectorAll('p')).map(p => p.innerText.trim()).join('\n\n');
+      navigator.clipboard.writeText(text).then(() => showToast('已複製本段演講稿'));
+    }
+
+    function copyAllScripts() {
+      const ids = [
+        { id: 'sec1', title: '【第一段｜開場前言（14:00～14:10）】' },
+        { id: 'sec2', title: '【第二段｜認識鋼印與四大清潔禁忌（14:10～14:30）】' },
+        { id: 'sec3', title: '【第三段｜黃金整理與珠寶安全清潔實作（14:30～15:00）】' },
+        { id: 'sec4', title: '【第四段｜雙軌平行：手串整理＋項鍊修改與戒台建議（15:00～15:45）】' },
+        { id: 'sec5', title: '【第五段｜成果驗收與溫馨結尾（15:45～16:00）】' }
+      ];
+      const full = ids.map(item => {
+        const el = document.getElementById(item.id);
+        const body = Array.from(el.querySelectorAll('p')).map(p => p.innerText.trim()).join('\n\n');
+        return item.title + '\n\n' + body;
+      }).join('\n\n------------------------------\n\n');
+
+      navigator.clipboard.writeText(full).then(() => showToast('已複製全場五段完整演講稿'));
+    }
+  </script>
+</body>
+</html>
