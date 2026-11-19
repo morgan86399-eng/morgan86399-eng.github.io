@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>貴金屬國際印記與縮碼對照表｜黃金・K金・白金（鉑金）・銀</title>
+  <style>
+    :root {
+      --bg: #f8f6f2;
+      --card: #ffffff;
+      --ink: #252220;
+      --muted: #665f59;
+      --border: #e5ded4;
+      --gold-bg: #fbf4e4;
+      --gold-bd: #d8b56a;
+      --gold-tx: #825b16;
+      --pt-bg: #eef2f6;
+      --pt-bd: #9fb0c4;
+      --pt-tx: #2e455e;
+      --ag-bg: #f2f2f3;
+      --ag-bd: #b8b8bf;
+      --ag-tx: #47474f;
+      --warn-bg: #fdf1ef;
+      --warn-bd: #dfa298;
+      --warn-tx: #8f3023;
+      --accent: #a67c32;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 28px 16px 60px;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--accent);
+      border-radius: 14px;
+      padding: 26px 30px;
+      box-shadow: 0 6px 24px rgba(37, 34, 32, 0.05);
+      margin-bottom: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+    }
+
+    .hero-eyebrow {
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: 26px;
+      line-height: 1.35;
+    }
+
+    .hero-desc {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14.5px;
+      max-width: 680px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--ink);
+      padding: 9px 16px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: #8c6623;
+      border-color: #8c6623;
+      color: #ffffff;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tab-btn {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--muted);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .tab-btn:hover {
+      border-color: var(--accent);
+      color: var(--ink);
+    }
+
+    .tab-btn.active {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: #ffffff;
+    }
+
+    .search-box {
+      position: relative;
+      min-width: 250px;
+      flex: 0 1 300px;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 9px 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--card);
+      font-size: 14px;
+      color: var(--ink);
+      outline: none;
+    }
+
+    .search-box input:focus {
+      border-color: var(--accent);
+    }
+
+    .section-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 26px;
+      box-shadow: 0 4px 18px rgba(37, 34, 32, 0.04);
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      margin: 0 0 6px;
+      font-size: 19px;
+      font-weight: 700;
+    }
+
+    .section-sub {
+      margin: 0 0 16px;
+      font-size: 13.5px;
+      color: var(--muted);
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th {
+      text-align: left;
+      background: #f5f1ea;
+      color: var(--ink);
+      font-weight: 700;
+      padding: 11px 12px;
+      border-bottom: 2px solid var(--border);
+      white-space: nowrap;
+    }
+
+    td {
+      padding: 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: #fcfaf7;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 9px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .badge-gold {
+      background: var(--gold-bg);
+      border: 1px solid var(--gold-bd);
+      color: var(--gold-tx);
+    }
+
+    .badge-pt {
+      background: var(--pt-bg);
+      border: 1px solid var(--pt-bd);
+      color: var(--pt-tx);
+    }
+
+    .badge-ag {
+      background: var(--ag-bg);
+      border: 1px solid var(--ag-bd);
+      color: var(--ag-tx);
+    }
+
+    .badge-warn {
+      background: var(--warn-bg);
+      border: 1px solid var(--warn-bd);
+      color: var(--warn-tx);
+    }
+
+    .code-pill {
+      display: inline-block;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 13px;
+      font-weight: 700;
+      background: #f3efe8;
+      border: 1px solid #e1d8c8;
+      color: #2c251f;
+      padding: 2px 7px;
+      border-radius: 6px;
+      margin: 2px 4px 2px 0;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+    }
+
+    .diff-box {
+      background: #faf8f4;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px 20px;
+    }
+
+    .diff-box h3 {
+      margin: 0 0 10px;
+      font-size: 16px;
+      color: var(--ink);
+    }
+
+    .diff-box p, .diff-box li {
+      font-size: 14px;
+      color: #3d3733;
+      margin: 0 0 8px;
+    }
+
+    .diff-box ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    .compare-highlight {
+      border-left: 4px solid var(--pt-tx);
+      background: #f4f7fa;
+      padding: 16px 20px;
+      border-radius: 0 10px 10px 0;
+      margin-top: 14px;
+    }
+
+    .compare-highlight h4 {
+      margin: 0 0 8px;
+      font-size: 15px;
+      color: var(--pt-tx);
+    }
+
+    .empty-msg {
+      display: none;
+      text-align: center;
+      padding: 28px;
+      color: var(--muted);
+      font-size: 14.5px;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(16px);
+      background: var(--ink);
+      color: #ffffff;
+      padding: 10px 20px;
+      border-radius: 999px;
+      font-size: 14px;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s ease;
+      z-index: 99;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    @media print {
+      body {
+        background: #ffffff;
+        padding: 0;
+      }
+      .toolbar, .hero-actions {
+        display: none !important;
+      }
+      .section-card, .hero {
+        box-shadow: none;
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <div>
+        <div class="hero-eyebrow">貴金屬成色與鋼印檢視參考手冊</div>
+        <h1>黃金・K金・白金（鉑金）・銀 國際縮碼對照表</h1>
+        <p class="hero-desc">彙整國際珠寶通用英文縮寫、千分比與 K 數編號制度、各國標示差異，以及現場體檢常見易混淆印記。</p>
+      </div>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="copyFullText()">一鍵複製純文字整理</button>
+        <button class="btn" onclick="window.print()">列印 / 另存 PDF</button>
+      </div>
+    </header>
+
+    <div class="toolbar">
+      <div class="tabs" role="tablist">
+        <button class="tab-btn active" data-filter="all">全部總覽</button>
+        <button class="tab-btn" data-filter="gold">黃金</button>
+        <button class="tab-btn" data-filter="karat">K 金</button>
+        <button class="tab-btn" data-filter="pt">白金（鉑金）</button>
+        <button class="tab-btn" data-filter="silver">銀飾</button>
+        <button class="tab-btn" data-filter="plated">鍍金 / 包金警示</button>
+      </div>
+      <div class="search-box">
+        <input type="text" id="searchInput" placeholder="搜尋鋼印（如 750、Pt900、GF、S925）" />
+      </div>
+    </div>
+
+    <section class="section-card">
+      <h2 class="section-title">一、四大貴金屬與常見印記總表</h2>
+      <p class="section-sub">貴金屬鋼印通常由「金屬英文縮寫」＋「純度數字（K數或千分比）」組成；部分歐洲與精品品牌僅標示千分比數字。</p>
+
+      <div class="table-wrap">
+        <table id="hallmarkTable">
+          <thead>
+            <tr>
+              <th>類別</th>
+              <th>常見英文／漢字印記</th>
+              <th>數字編號</th>
+              <th>理論含貴金屬比例</th>
+              <th>常見地區與用途說明</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 黃金 -->
+            <tr data-cat="gold">
+              <td><span class="badge badge-gold">黃金</span></td>
+              <td><span class="code-pill">Au9999</span><span class="code-pill">純金</span><span class="code-pill">足金</span><span class="code-pill">24K</span></td>
+              <td><span class="code-pill">9999</span><span class="code-pill">999.9</span></td>
+              <td>≥ 99.99%（萬足金）</td>
+              <td>台灣銀樓金條、高純度婚嫁金飾、黃金擺件常見標示。</td>
+            </tr>
+            <tr data-cat="gold">
+              <td><span class="badge badge-gold">黃金</span></td>
+              <td><span class="code-pill">Au999</span><span class="code-pill">足金</span><span class="code-pill">24K</span></td>
+              <td><span class="code-pill">999</span></td>
+              <td>≥ 99.9%（千足金）</td>
+              <td>兩岸三地與國際純金飾品主流標準；ISO 9202 純金最高通用標示。</td>
+            </tr>
+            <tr data-cat="gold">
+              <td><span class="badge badge-gold">黃金</span></td>
+              <td><span class="code-pill">Au990</span><span class="code-pill">足金</span></td>
+              <td><span class="code-pill">990</span></td>
+              <td>≥ 99.0%</td>
+              <td>早年亞洲傳統金飾或部分需保留焊藥接點之工藝金飾可見。</td>
+            </tr>
+            <tr data-cat="gold">
+              <td><span class="badge badge-gold">黃金</span></td>
+              <td><span class="code-pill">22K</span><span class="code-pill">Au916</span></td>
+              <td><span class="code-pill">916</span></td>
+              <td>91.6%</td>
+              <td>東南亞（星馬）、印度金飾及部分古法硬金工藝常見；硬度較 999 略高。</td>
+            </tr>
+
+            <!-- K 金 -->
+            <tr data-cat="karat">
+              <td><span class="badge badge-gold">K 金</span></td>
+              <td><span class="code-pill">18K</span><span class="code-pill">18KT</span><span class="code-pill">Au750</span><span class="code-pill">G750</span><span class="code-pill">G18K</span></td>
+              <td><span class="code-pill">750</span></td>
+              <td>75.0%（18/24）</td>
+              <td>國際高級珠寶與寶石鑲嵌主力成色；常搭配顏色標示 YG / WG / RG。</td>
+            </tr>
+            <tr data-cat="karat">
+              <td><span class="badge badge-gold">K 金</span></td>
+              <td><span class="code-pill">14K</span><span class="code-pill">14KT</span><span class="code-pill">Au585</span><span class="code-pill">G585</span></td>
+              <td><span class="code-pill">585</span></td>
+              <td>58.5%（14/24）</td>
+              <td>美國、歐陸日常珠寶及韓系／輕奢品牌最常見成色，耐磨性佳。</td>
+            </tr>
+            <tr data-cat="karat">
+              <td><span class="badge badge-gold">K 金</span></td>
+              <td><span class="code-pill">10K</span><span class="code-pill">10KT</span><span class="code-pill">Au417</span></td>
+              <td><span class="code-pill">417</span><span class="code-pill">416</span></td>
+              <td>41.7%（10/24）</td>
+              <td>日本輕珠寶（如日系細緻項鍊、耳飾）與北美平價 K 金主流。</td>
+            </tr>
+            <tr data-cat="karat">
+              <td><span class="badge badge-gold">K 金</span></td>
+              <td><span class="code-pill">9K</span><span class="code-pill">9KT</span><span class="code-pill">Au375</span></td>
+              <td><span class="code-pill">375</span></td>
+              <td>37.5%（9/24）</td>
+              <td>英國、澳洲與部分歐系復古古董珠寶常見；為英國法定 K 金基準之一。</td>
+            </tr>
+            <tr data-cat="karat">
+              <td><span class="badge badge-gold">K 金</span></td>
+              <td><span class="code-pill">8K</span><span class="code-pill">Au333</span></td>
+              <td><span class="code-pill">333</span></td>
+              <td>33.3%（8/24）</td>
+              <td>德國及中歐早年珠寶常見標準；部分國家不將低於 375 視為 K 金。</td>
+            </tr>
+
+            <!-- 白金 (鉑金) -->
+            <tr data-cat="pt">
+              <td><span class="badge badge-pt">白金／鉑金</span></td>
+              <td><span class="code-pill">Pt999</span><span class="code-pill">Pt990</span><span class="code-pill">PLAT</span></td>
+              <td><span class="code-pill">999</span><span class="code-pill">990</span></td>
+              <td>99.9% / 99.0%</td>
+              <td>高純度素面鉑金戒、傳統手鍊或投資型鉑金飾品，質地偏軟。</td>
+            </tr>
+            <tr data-cat="pt">
+              <td><span class="badge badge-pt">白金／鉑金</span></td>
+              <td><span class="code-pill">Pt950</span><span class="code-pill">PLAT950</span><span class="code-pill">PLATINUM</span></td>
+              <td><span class="code-pill">950</span></td>
+              <td>95.0%</td>
+              <td>國際高級珠寶、鑽戒戒台最主流鉑金標準，色澤純白穩定不褪色。</td>
+            </tr>
+            <tr data-cat="pt">
+              <td><span class="badge badge-pt">白金／鉑金</span></td>
+              <td><span class="code-pill">Pt900</span></td>
+              <td><span class="code-pill">900</span></td>
+              <td>90.0%</td>
+              <td>日本傳統婚戒、老件珠寶爪鑲戒台常見，硬度與抓鑽力高。</td>
+            </tr>
+            <tr data-cat="pt">
+              <td><span class="badge badge-pt">白金／鉑金</span></td>
+              <td><span class="code-pill">Pt850</span><span class="code-pill">Pm</span></td>
+              <td><span class="code-pill">850</span></td>
+              <td>85.0%</td>
+              <td>日本項鍊鍊身、彈簧扣頭等耐磨配件常用；早期日本古董件偶見舊稱 Pm。</td>
+            </tr>
+
+            <!-- 銀 -->
+            <tr data-cat="silver">
+              <td><span class="badge badge-ag">銀</span></td>
+              <td><span class="code-pill">S999</span><span class="code-pill">Ag999</span><span class="code-pill">足銀</span></td>
+              <td><span class="code-pill">999</span></td>
+              <td>99.9%</td>
+              <td>千足純銀，質地較軟、抗過敏，常見於素面手鐲、銀條與長命鎖。</td>
+            </tr>
+            <tr data-cat="silver">
+              <td><span class="badge badge-ag">銀</span></td>
+              <td><span class="code-pill">S990</span><span class="code-pill">Ag990</span></td>
+              <td><span class="code-pill">990</span></td>
+              <td>99.0%</td>
+              <td>傳統銀飾、部分手工敲花銀鐲常見成色。</td>
+            </tr>
+            <tr data-cat="silver">
+              <td><span class="badge badge-ag">銀</span></td>
+              <td><span class="code-pill">S950</span><span class="code-pill">Ag950</span></td>
+              <td><span class="code-pill">950</span></td>
+              <td>95.0%</td>
+              <td>日系職人銀飾、部分法式高純度銀器與工藝首飾常見。</td>
+            </tr>
+            <tr data-cat="silver">
+              <td><span class="badge badge-ag">銀</span></td>
+              <td><span class="code-pill">S925</span><span class="code-pill">Ag925</span><span class="code-pill">STERLING</span><span class="code-pill">STER</span></td>
+              <td><span class="code-pill">925</span></td>
+              <td>92.5%</td>
+              <td>國際標準純銀（紋銀），加入 7.5% 銅強化硬度，現代時尚銀飾主流。</td>
+            </tr>
+            <tr data-cat="silver">
+              <td><span class="badge badge-ag">銀</span></td>
+              <td><span class="code-pill">800</span><span class="code-pill">835</span><span class="code-pill">Ag800</span></td>
+              <td><span class="code-pill">800</span><span class="code-pill">835</span></td>
+              <td>80.0% / 83.5%</td>
+              <td>歐洲古董銀飾、歐陸胸針、早期銀餐具改製飾品常見。</td>
+            </tr>
+
+            <!-- 鍍金 / 包金警示 -->
+            <tr data-cat="plated">
+              <td><span class="badge badge-warn">包金／注金</span></td>
+              <td><span class="code-pill">GF</span><span class="code-pill">14K GF</span><span class="code-pill">1/20 14K GF</span><span class="code-pill">RGP</span></td>
+              <td>依包層標示</td>
+              <td>表層包覆 K 金（非整件實心）</td>
+              <td>Gold Filled / Rolled Gold Plate。將 K 金層高溫高壓軋合於銅等基底外層，非純 K 金。</td>
+            </tr>
+            <tr data-cat="plated">
+              <td><span class="badge badge-warn">電鍍金</span></td>
+              <td><span class="code-pill">GP</span><span class="code-pill">GEP</span><span class="code-pill">HGE</span><span class="code-pill">18KGP</span></td>
+              <td>—</td>
+              <td>僅極薄電鍍金層</td>
+              <td>Gold Plated / Heavy Gold Electroplate。內胎多為銅、合金或不鏽鋼，無實心貴金屬回收價值。</td>
+            </tr>
+            <tr data-cat="plated">
+              <td><span class="badge badge-warn">厚鍍金純銀</span></td>
+              <td><span class="code-pill">VERMEIL</span>＋<span class="code-pill">925</span></td>
+              <td><span class="code-pill">925</span></td>
+              <td>925 純銀胎體外層厚鍍金</td>
+              <td>歐美流行工藝：基底為 925 純銀，表面電鍍達規定厚度（常 ≥2.5 微米）之 10K 以上黃金。</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="emptyMsg" class="empty-msg">找不到符合關鍵字的印記，請試試其他編號或縮寫。</div>
+    </section>
+
+    <section class="section-card">
+      <h2 class="section-title">二、英文縮寫與數字編號的三大核心差異</h2>
+      <p class="section-sub">掌握「字母代表誰」與「數字怎麼算」，就能看懂九成以上的國際飾品鋼印。</p>
+
+      <div class="grid-2">
+        <div class="diff-box">
+          <h3>1. 英文縮寫的系統差異</h3>
+          <ul>
+            <li><strong>化學元素符號（國際公認最嚴謹）</strong>：<br>
+              <span class="code-pill">Au</span> 黃金（Aurum）、<span class="code-pill">Pt</span> 鉑金（Platinum）、<span class="code-pill">Ag</span> 銀（Argentum）、<span class="code-pill">Pd</span> 鈀金（Palladium）。</li>
+            <li><strong>英文單字簡稱（商業流通常見）</strong>：<br>
+              <span class="code-pill">K / KT</span>（Karat，僅用於金）、<span class="code-pill">G</span>（Gold，如 G750）、<span class="code-pill">S</span>（Silver，如 S925）、<span class="code-pill">PLAT</span>（Platinum）、<span class="code-pill">STERLING</span>（925 紋銀）。</li>
+            <li><strong>顏色縮寫後綴（代表外觀顏色，非金屬種類）</strong>：<br>
+              <span class="code-pill">YG</span> 黃 K 金（Yellow Gold）、<span class="code-pill">WG</span> 白 K 金（White Gold）、<span class="code-pill">RG / PG</span> 玫瑰金（Rose / Pink Gold）。</li>
+          </ul>
+        </div>
+
+        <div class="diff-box">
+          <h3>2. 數字編號的計量制度差異</h3>
+          <ul>
+            <li><strong>24 分比制（K 數制，專屬黃金與 K 金）</strong>：<br>
+              把純金分為 24 份，<strong>18K ＝ 18÷24 ＝ 75%</strong>、<strong>14K ＝ 14÷24 ＝ 58.3%（法規標 585）</strong>。銀與鉑金<strong>不使用</strong> K 數。</li>
+            <li><strong>千分比制（Fineness ‰，全貴金屬通用）</strong>：<br>
+              以 1000 代表 100% 純度，如 <strong>750 ＝ 75.0%</strong>、<strong>950 ＝ 95.0%</strong>、<strong>925 ＝ 92.5%</strong>。</li>
+            <li><strong>同一組數字在不同金屬代表不同意思</strong>：<br>
+              例如同為 <span class="code-pill">999</span>，<span class="code-pill">Au999</span> 是千足黃金、<span class="code-pill">Pt999</span> 是千足鉑金、<span class="code-pill">Ag999</span> 則是千足純銀；<span class="code-pill">950</span> 常見於 <span class="code-pill">Pt950</span> 鉑金，但法日銀飾也有 <span class="code-pill">Ag950</span>。</li>
+          </ul>
+        </div>
+
+        <div class="diff-box">
+          <h3>3. 各地區市場與精品標示習慣差異</h3>
+          <ul>
+            <li><strong>台灣／日本／韓國</strong>：習慣將 K 數與千分比混用，例如門市講 18K，戒指內圈常印 <span class="code-pill">K18</span>（日系特徵，K 在前）或 <span class="code-pill">18K</span>、<span class="code-pill">Pt900</span>、<span class="code-pill">Pt850</span>、<span class="code-pill">S925</span>。</li>
+            <li><strong>歐洲／國際一線精品</strong>：遵循 ISO 9202 與維也納公約，常直接印千分比數字（如單印 <span class="code-pill">750</span>、<span class="code-pill">950</span>）或 <span class="code-pill">Au750</span>，並搭配品牌印記與官方檢測圖徽（如鷹頭、天秤、聖伯納犬頭）。</li>
+            <li><strong>美國／北美市場</strong>：偏好 <span class="code-pill">14K</span>、<span class="code-pill">18K</span>、<span class="code-pill">10K</span>、<span class="code-pill">PLAT</span>、<span class="code-pill">STER</span>，依 FTC 規定須同時打上製造商責任商標。</li>
+          </ul>
+        </div>
+
+        <div class="diff-box">
+          <h3>4. 體檢與實務維護時的判別提醒</h3>
+          <ul>
+            <li><strong>看到 <span class="code-pill">K18</span> 與 <span class="code-pill">18K</span> 的小線索</strong>：字母 <span class="code-pill">K</span> 寫在數字前面（如 <span class="code-pill">K18</span>、<span class="code-pill">K14</span>、<span class="code-pill">K10</span>），極高機率是日本製造或日系品牌珠寶（俗稱「日本 K」）。</li>
+            <li><strong>看到 <span class="code-pill">GF</span> / <span class="code-pill">GP</span> 別搞錯</strong>：即使前面寫了 <span class="code-pill">18K GP</span> 或 <span class="code-pill">14K GF</span>，重點在後面的 <strong>GP（電鍍）</strong> 與 <strong>GF（包金）</strong>，清洗時不可用強酸或過度拋光，以免磨穿表層。</li>
+            <li><strong>單純無印記或磨損件</strong>：古董件、修改過戒圍的戒指可能磨掉印記，仍須以專業試金儀（XRF 光譜儀）或比重／試金石實測為準。</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="compare-highlight">
+        <h4>現場最常問：「白金」跟「白 K 金」到底差在哪？</h4>
+        <p style="margin:0; font-size:14px; color:#2b3948;">
+          台灣口語常把白色金屬統稱「白金」，但在專業珠寶與國際縮碼上完全不同：<br>
+          • <strong>真白金 ＝ 鉑金（<span class="code-pill">Pt950</span> / <span class="code-pill">Pt900</span> / <span class="code-pill">Pt850</span>）</strong>：天然銀白色貴金屬，密度高、拿在手上較沉，不會因磨損而變黃。<br>
+          • <strong>白 K 金 ＝ 白色黃金合金（<span class="code-pill">18K WG</span> / <span class="code-pill">Au750</span> / <span class="code-pill">585</span>）</strong>：本質是 75% 或 58.5% 的黃金加入白色金屬調色，表面多電鍍一層銠；配戴多年電鍍層磨薄後會微微透出淡香檳黃色，保養時重新電鍍即可恢復雪白光澤。
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <div id="toast" class="toast">已複製整理表純文字</div>
+
+  <script>
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const searchInput = document.getElementById('searchInput');
+    const rows = Array.from(document.querySelectorAll('#hallmarkTable tbody tr'));
+    const emptyMsg = document.getElementById('emptyMsg');
+    let currentFilter = 'all';
+
+    function applyFilter() {
+      const q = searchInput.value.trim().toLowerCase();
+      let visibleCount = 0;
+
+      rows.forEach(row => {
+        const cat = row.getAttribute('data-cat');
+        const text = row.innerText.toLowerCase();
+        const matchCat = currentFilter === 'all' || cat === currentFilter;
+        const matchSearch = !q || text.includes(q);
+        const show = matchCat && matchSearch;
+        row.style.display = show ? '' : 'none';
+        if (show) visibleCount++;
+      });
+
+      emptyMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.getAttribute('data-filter');
+        applyFilter();
+      });
+    });
+
+    searchInput.addEventListener('input', applyFilter);
+
+    function copyFullText() {
+      const lines = [
+        '【黃金・K金・白金（鉑金）・銀 國際縮碼與數字編號對照整理】',
+        '',
+        '一、黃金（元素符號 Au）',
+        '- 9999 / Au9999 / 999.9 / 萬足金：含金量 ≥ 99.99%',
+        '- 999 / Au999 / 足金 / 純金 / 24K：含金量 ≥ 99.9%',
+        '- 990 / Au990：含金量 ≥ 99.0%',
+        '- 22K / 916 / Au916：含金量 91.6%',
+        '',
+        '二、K 金（24分比制 K/KT vs. 千分比制 Au/G）',
+        '- 18K / 18KT / 750 / Au750 / G750：含金量 75.0%（顏色後綴 YG 黃K、WG 白K、RG/PG 玫瑰金）',
+        '- 14K / 14KT / 585 / Au585 / G585：含金量 58.5%',
+        '- 10K / 10KT / 417 / Au417：含金量 41.7%',
+        '- 9K / 9KT / 375 / Au375：含金量 37.5%',
+        '- 8K / 333 / Au333：含金量 33.3%',
+        '',
+        '三、白金／鉑金（元素符號 Pt / PLAT）',
+        '- Pt999 / Pt990：含鉑 99.9% / 99.0%',
+        '- Pt950 / PLAT950：含鉑 95.0%（國際高級珠寶主流）',
+        '- Pt900：含鉑 90.0%（日系戒台與經典爪鑲常見）',
+        '- Pt850：含鉑 85.0%（日系項鍊鍊身、扣頭常用；古董日件偶見 Pm）',
+        '※ 注意區分：「白金(鉑金)」為 Pt 開頭；「白 K 金」為 18K WG / 750 / Au750，本質是黃金合金外層電鍍銠。',
+        '',
+        '四、銀（元素符號 Ag / 商業縮寫 S / Sterling）',
+        '- S999 / Ag999 / 999 / 足銀：含銀 99.9%',
+        '- S990 / Ag990 / 990：含銀 99.0%',
+        '- S950 / Ag950 / 950：含銀 95.0%',
+        '- S925 / Ag925 / 925 / STERLING / STER：含銀 92.5%（國際標準純銀）',
+        '- 800 / 835：歐陸古董銀器常見成色',
+        '',
+        '五、非純貴金屬警示印記（包金／鍍金）',
+        '- GF / RGP（如 14K GF、1/20 14K GF）：包金／注金，表層包覆 K 金，非整件實心',
+        '- GP / GEP / HGE（如 18KGP）：電鍍金，僅表層極薄鍍金',
+        '- VERMEIL + 925：925 純銀胎體外層厚鍍金',
+        '',
+        '六、英文與數字差異核心重點',
+        '1. 元素符號（Au、Pt、Ag、Pd）為國際最嚴謹寫法；K/G/S 為商業縮寫；YG/WG/RG 指顏色而非材質。',
+        '2. K 數制（24分比）專用於黃金與 K 金；千分比制（‰）全貴金屬通用，同一數字需看前面英文字母（如 Pt950 與 Ag950、Au999 與 Ag999）。',
+        '3. 字母 K 在前（如 K18、K14）多為日系珠寶特徵；歐洲精品常單印千分比數字（如 750、950）。'
+      ].join('\n');
+
+      navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById('toast');
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2200);
+      });
+    }
+  </script>
+</body>
+</html>
